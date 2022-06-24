@@ -1,0 +1,20 @@
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  location: String
+  sub: String!
+}
+
+type Document @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String!
+  description: String
+  path: String!
+  categoryID: ID! @index(name: "byCategory")
+}
+
+type Category @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  Documents: [Document] @hasMany(indexName: "byCategory", fields: ["id"])
+}
