@@ -1,0 +1,13 @@
+{
+  "resourceName": "amplifyJohnny",
+  "policyUUID": "9e3dc0b7",
+  "bucketName": "amplifyjohnny1a26ad73f9694ef799c6c9a8d21ad9cd",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

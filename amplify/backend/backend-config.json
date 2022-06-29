@@ -52,5 +52,12 @@
         }
       }
     }
+  },
+  "storage": {
+    "amplifyJohnny": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
   }
 }
