@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-import { Amplify, Storage } from "aws-amplify";
+import { Amplify } from "aws-amplify";
 import { AmplifyProvider, Authenticator, Image, useTheme, View, withAuthenticator } from "@aws-amplify/ui-react";
-import { studioTheme, MarketingFooter } from './ui-components';
-import { NavBar, SideBar, ViewProfile } from './components';
+import { studioTheme, MarketingFooter, HeroLayout2 } from './ui-components';
+import { NavBar, SideBar, ViewProfile, File, Upload } from './components';
 import awsconfig from "./aws-exports";
 import logo from './logo.svg';
 
@@ -43,65 +43,36 @@ function App({signOut, user}) {
     }
   };
 
-  const [fileData, setFileData] = useState([]);
-  const [fileStatus, setFileStatus] = useState(false);
-  const [s3DownloadLinks, setS3DownloadLinks] = useState([]);
+  
+  
+  
 
  
 
   
   
   
-  const uploadFile = async () => {
-    const result = await Storage.put(fileData.name, fileData, {
-      contentType: fileData.type,
-    });
-    setFileStatus(true);
-    console.log("uploaded result: " + result);
-  }
+  
 
-  async function listObjectsFromS3() {
-    const s3Objects = await Storage.list("");
-    s3Objects.map(async (item) => {
-      let downloadLink = await generateDownloadLinks(item.key);
-      setS3DownloadLinks((s3DownloadLinks => [
-        ...s3DownloadLinks,
-        downloadLink,
-      ]));
-    });
-  }
+  
 
-  async function generateDownloadLinks(fileKey) {
-    const result = await Storage.get(fileKey, {download: true});
-    return downloadBlob(result.Body, "filename");
-  }
-
-  async function downloadBlob(blob, filename) {
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    return a;
-  } 
-
-  useEffect(() => {
-    listObjectsFromS3();
-  }, []);
+  
   
 
   return (
     <AmplifyProvider theme={studioTheme}>
       <Authenticator variation="modal" components={components}>
         <NavBar />
-        <SideBar></SideBar>
         <Router>
             <Routes>
-                <Route element={<ViewProfile/>} path="/" />
-                <Route element={<MarketingFooter/>} path="/home" />
+                <Route element={<HeroLayout2/>} path="/" />
+                <Route element={<File/>} path="/file" />
+                <Route element={<Upload/>} path="/upload" />
             </Routes>
         </Router>
         <MarketingFooter />
 
-        <div className="App">
+        {/* <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
@@ -110,24 +81,11 @@ function App({signOut, user}) {
           <h1>Hello {user.username}</h1>
           <button onClick={signOut}>Sign out</button>
           
-          {
-            s3DownloadLinks.map((item, index) => (
-              <div key={index}>
-                <a href={item} target="_blank" download="">
-                  Link {index}
-                </a>
-              </div>
-            )) 
-          }
+          
 
-          <div>
-            <input type="file" onChange={(event) => setFileData(event.target.files[0])}></input>
-            <button onClick={uploadFile}>Upload</button>
-          </div>
-
-          {fileStatus ? 'Uploaded successfully' : ''} 
+          
         </header>
-      </div>
+      </div> */}
 
 
       </Authenticator>
