@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 import { Amplify, Storage } from "aws-amplify";
 import { AmplifyProvider, Authenticator, Image, useTheme, View, withAuthenticator } from "@aws-amplify/ui-react";
-import { studioTheme } from './ui-components';
-import { NavBar } from './components';
+import { studioTheme, MarketingFooter } from './ui-components';
+import { NavBar, SideBar, ViewProfile } from './components';
 import awsconfig from "./aws-exports";
 import logo from './logo.svg';
+
+// import { RouteNavigation } from './routers';
 import "@aws-amplify/ui-react/styles.css";
 import './App.css';
 
@@ -85,12 +91,16 @@ function App({signOut, user}) {
   return (
     <AmplifyProvider theme={studioTheme}>
       <Authenticator variation="modal" components={components}>
+        <NavBar />
+        <SideBar></SideBar>
         <Router>
-          <NavBar />
-          <View style={{ minHeight: 'calc(100vh - 410px)' }}>
-          </View>
+            <Routes>
+                <Route element={<ViewProfile/>} path="/" />
+                <Route element={<MarketingFooter/>} path="/home" />
+            </Routes>
         </Router>
-        
+        <MarketingFooter />
+
         <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />

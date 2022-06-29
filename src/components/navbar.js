@@ -1,12 +1,12 @@
 import React from "react";
 import { useAuthenticator, Menu, Image } from "@aws-amplify/ui-react";
 import { NavBar as UINavBar } from "../ui-components";
-import { useAuthContext } from "../contexts/AuthContext";
+// import { useAuthContext } from "../contexts/AuthContext";
 import Profile from "./profile";
 
 const NavBar = ({ handleSearch }) => {
   const { signOut } = useAuthenticator((context) => [context.user]);
-  const { dbUser } = useAuthContext();
+  // const { dbUser } = useAuthContext();
 
   const handleUserOpen = () => (
     <Image
@@ -22,7 +22,7 @@ const NavBar = ({ handleSearch }) => {
     Avatar: {
       children: 
         <Menu trigger={handleUserOpen()}>
-          <Profile user={dbUser} signOut={signOut} />
+          {/* <Profile user={dbUser} signOut={signOut} /> */}
         </Menu>,
     },
     SearchField: {
