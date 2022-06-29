@@ -5,12 +5,9 @@
  **************************************************************************/
 
 import React from "react";
-import { Category } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { FlexProps } from "@aws-amplify/ui-react";
-export declare type SideBarProps = React.PropsWithChildren<Partial<FlexProps> & {
-    category?: Category;
-} & {
+export declare type ItemCardAProps = React.PropsWithChildren<Partial<FlexProps> & {
     overrides?: EscapeHatchProps | undefined | null;
 }>;
-export default function SideBar(props: SideBarProps): React.ReactElement;
+export default function ItemCardA(props: ItemCardAProps): React.ReactElement;
