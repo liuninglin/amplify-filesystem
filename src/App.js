@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Amplify, Storage } from "aws-amplify";
-import { AmplifyProvider, Authenticator, Image, useTheme, View } from "@aws-amplify/ui-react";
-import { NavBar, studioTheme } from './ui-components';
+import { AmplifyProvider, Authenticator, Image, useTheme, View, withAuthenticator } from "@aws-amplify/ui-react";
+import { studioTheme } from './ui-components';
+import { NavBar } from './components';
 import awsconfig from "./aws-exports";
 import logo from './logo.svg';
 import "@aws-amplify/ui-react/styles.css";
@@ -11,7 +13,14 @@ Amplify.configure({
   ...awsconfig,
 });
 
-function App() {
+function App({signOut, user}) {
+  const [searchTxt, setSearchTxt] = useState('');
+
+  const handleSearch = (txt) => {
+    if (txt !== searchTxt) setSearchTxt(txt);
+    console.log('new search: ', txt);
+  };
+
   const components = {
     Header() {
       const { tokens } = useTheme();
@@ -76,42 +85,45 @@ function App() {
   return (
     <AmplifyProvider theme={studioTheme}>
       <Authenticator variation="modal" components={components}>
-        {
-          ({ signOut, user }) => 
-            (
-              <div className="App">
-                <header className="App-header">
-                  <img src={logo} className="App-logo" alt="logo" />
-                  <p>
-                    My App
-                  </p>
-                  <h1>Hello {user.username}</h1>
-                  <button onClick={signOut}>Sign out</button>
-                  
-                  {
-                    s3DownloadLinks.map((item, index) => (
-                      <div key={index}>
-                        <a href={item} target="_blank" download="">
-                          Link {index}
-                        </a>
-                      </div>
-                    )) 
-                  }
-
-                  <div>
-                    <input type="file" onChange={(event) => setFileData(event.target.files[0])}></input>
-                    <button onClick={uploadFile}>Upload</button>
-                  </div>
-
-                  {fileStatus ? 'Uploaded successfully' : ''} 
-                </header>
+        <Router>
+          <NavBar />
+          <View style={{ minHeight: 'calc(100vh - 410px)' }}>
+          </View>
+        </Router>
+        
+        <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            My App
+          </p>
+          <h1>Hello {user.username}</h1>
+          <button onClick={signOut}>Sign out</button>
+          
+          {
+            s3DownloadLinks.map((item, index) => (
+              <div key={index}>
+                <a href={item} target="_blank" download="">
+                  Link {index}
+                </a>
               </div>
-            )
-        }
+            )) 
+          }
+
+          <div>
+            <input type="file" onChange={(event) => setFileData(event.target.files[0])}></input>
+            <button onClick={uploadFile}>Upload</button>
+          </div>
+
+          {fileStatus ? 'Uploaded successfully' : ''} 
+        </header>
+      </div>
+
+
       </Authenticator>
     </AmplifyProvider>
 
   );
 }
 
-export default App;
+export default withAuthenticator(App);

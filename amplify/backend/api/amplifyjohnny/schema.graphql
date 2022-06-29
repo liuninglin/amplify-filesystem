@@ -17,4 +17,4 @@ type Category @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   Documents: [Document] @hasMany(indexName: "byCategory", fields: ["id"])
-}
+} 
