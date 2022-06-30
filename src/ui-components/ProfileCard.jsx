@@ -6,16 +6,21 @@
 
 /* eslint-disable */
 import React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import {
+  getOverrideProps,
+  useAuthSignOutAction,
+} from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
-import MyIcon from "./MyIcon";
 export default function ProfileCard(props) {
-  const { overrides, ...rest } = props;
+  const { user, overrides, ...rest } = props;
+  const buttonOnClick = useAuthSignOutAction({ global: false });
   return (
     <Flex
       gap="24px"
       direction="column"
       width="320px"
+      height="350px"
+      justifyContent="space-between"
       alignItems="center"
       position="relative"
       padding="24px 24px 24px 24px"
@@ -55,65 +60,8 @@ export default function ProfileCard(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Melinda Marcus"
+          children={user?.name}
           {...getOverrideProps(overrides, "Melinda Marcus")}
-        ></Text>
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="400"
-          color="rgba(48,64,80,1)"
-          lineHeight="24px"
-          textAlign="center"
-          display="flex"
-          direction="column"
-          justifyContent="flex-start"
-          letterSpacing="0.01px"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="Design Engineer at Cloth Studios"
-          {...getOverrideProps(overrides, "Design Engineer at Cloth Studios")}
-        ></Text>
-      </Flex>
-      <Flex
-        gap="16px"
-        direction="row"
-        width="fit-content"
-        alignItems="flex-start"
-        shrink="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Followers")}
-      >
-        <MyIcon
-          width="24px"
-          height="24px"
-          shrink="0"
-          overflow="hidden"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          type="group"
-          {...getOverrideProps(overrides, "MyIcon")}
-        ></MyIcon>
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="400"
-          color="rgba(48,64,80,1)"
-          lineHeight="24px"
-          textAlign="center"
-          display="flex"
-          direction="column"
-          justifyContent="flex-start"
-          letterSpacing="0.01px"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="99 Followers"
-          {...getOverrideProps(overrides, "99 Followers")}
         ></Text>
       </Flex>
       <Button
@@ -129,7 +77,10 @@ export default function ProfileCard(props) {
         size="large"
         isDisabled={false}
         variation="primary"
-        children="View Profile"
+        children="Log Out"
+        onClick={() => {
+          buttonOnClick();
+        }}
         {...getOverrideProps(overrides, "Button")}
       ></Button>
     </Flex>

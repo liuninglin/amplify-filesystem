@@ -40,7 +40,7 @@ export default function HeroLayout2(props) {
         left="0%"
         right="0%"
         direction="column"
-        width="1440px"
+        width="100%"
         height="858px"
         justifyContent="center"
         alignItems="center"
