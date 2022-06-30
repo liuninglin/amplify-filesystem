@@ -1,12 +1,11 @@
 import React from "react";
 import { useAuthenticator, Menu, Image } from "@aws-amplify/ui-react";
 import { NavBar as UINavBar } from "../ui-components";
-// import { useAuthContext } from "../contexts/AuthContext";
 import Profile from "./profile";
 
 const NavBar = ({ handleSearch }) => {
   const { signOut } = useAuthenticator((context) => [context.user]);
-  // const { dbUser } = useAuthContext();
+  const { user } = useAuthenticator();
 
   const handleUserOpen = () => (
     <Image
@@ -19,14 +18,8 @@ const NavBar = ({ handleSearch }) => {
   );
 
   const overrides = {
-    Avatar: {
-      children: 
-        <Menu trigger={handleUserOpen()}>
-          {/* <Profile user={dbUser} signOut={signOut} /> */}
-        </Menu>,
-    },
-    SearchField: {
-      onSubmit: (txt) => handleSearch(txt),
+    username: {
+      "children": user.username
     }
   };
 

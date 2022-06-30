@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 import { Amplify } from "aws-amplify";
 import { AmplifyProvider, Authenticator, Image, useTheme, View, withAuthenticator } from "@aws-amplify/ui-react";
-import { studioTheme, MarketingFooter, HeroLayout2 } from './ui-components';
-import { NavBar, SideBar, ViewProfile, File, Upload } from './components';
+import { studioTheme } from './ui-components';
+import { NavBar, SideBar, ViewProfile, File, Upload, Footer, Home } from './components';
 import awsconfig from "./aws-exports";
 import logo from './logo.svg';
 
@@ -65,12 +65,12 @@ function App({signOut, user}) {
         <NavBar />
         <Router>
             <Routes>
-                <Route element={<HeroLayout2/>} path="/" />
+                <Route element={<Home/>} path="/" />
                 <Route element={<File/>} path="/file" />
                 <Route element={<Upload/>} path="/upload" />
             </Routes>
         </Router>
-        <MarketingFooter />
+        <Footer />
 
         {/* <div className="App">
         <header className="App-header">
