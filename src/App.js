@@ -8,8 +8,8 @@ import { Amplify } from "aws-amplify";
 import {
   useNavigateAction,
 } from "@aws-amplify/ui-react/internal";
-import { AmplifyProvider, Authenticator, Image, useTheme, View, withAuthenticator } from "@aws-amplify/ui-react";
-import { studioTheme } from './ui-components';
+import { AmplifyProvider, Authenticator, Image, useTheme, View, withAuthenticator, Flex } from "@aws-amplify/ui-react";
+import { studioTheme, AlertSuccess, AlertWarning, AlertError } from './ui-components';
 import { NavBar, SideBar, ViewProfile, File, Upload, Footer, Home } from './components';
 import awsconfig from "./aws-exports";
 import logo from './logo.svg';
@@ -56,6 +56,9 @@ Amplify.configure({
 function App({signOut, user}) {
   const [searchTxt, setSearchTxt] = useState('');
 
+  const [alert, setAlert] = useState(true);
+  const [alertContent, setAlertContent] = useState('');
+
   const handleSearch = (txt) => {
     if (txt !== searchTxt) setSearchTxt(txt);
     console.log('new search: ', txt);
@@ -98,13 +101,40 @@ function App({signOut, user}) {
       <Authenticator variation="modal" components={components}>
         <AuthContextProvider>
           <NavBar />
-          <Router>
+
+          { alert 
+          ?
+            <Flex
+                  id="div_alert"
+                  direction="column"
+                  position="absolute"
+                  alignItems="stretch"
+                  style={{zIndex: '9999'}}
+              >
+              {alertContent}  
+              </Flex>
+          : ''
+          }
+
+
+          <Flex
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            alignContent="center"
+            wrap="nowrap"
+            padding="24px 24px 24px 24px"
+          >
+            
+            <Router>
               <Routes>
-                  <Route element={<Home/>} path="/" />
+                  <Route element={<Home setAlert={setAlert} setAlertContent={setAlertContent} />} path="/" />
                   <Route element={<File/>} path="/file" />
-                  <Route element={<Upload/>} path="/upload" />
+                  <Route element={<Upload setAlert={setAlert} setAlertContent={setAlertContent} />} path="/upload" />
               </Routes>
-          </Router>
+            </Router>
+          </Flex>
+
           <Footer />
         </AuthContextProvider>
         

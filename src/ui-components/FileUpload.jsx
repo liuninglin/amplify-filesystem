@@ -9,11 +9,11 @@ import React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import {
   Button,
-  CheckboxField,
   Flex,
   SelectField,
   Text,
   TextField,
+  View,
 } from "@aws-amplify/ui-react";
 export default function FileUpload(props) {
   const { overrides, ...rest } = props;
@@ -54,7 +54,7 @@ export default function FileUpload(props) {
           isDisabled={false}
           labelHidden={false}
           variation="default"
-          {...getOverrideProps(overrides, "TextField")}
+          {...getOverrideProps(overrides, "field_name")}
         ></TextField>
         <SelectField
           display="flex"
@@ -71,90 +71,90 @@ export default function FileUpload(props) {
           isDisabled={false}
           labelHidden={false}
           variation="default"
-          {...getOverrideProps(overrides, "SelectField")}
+          {...getOverrideProps(overrides, "select_type")}
         ></SelectField>
-        <Text
-          fontFamily="Inter"
-          fontSize="20px"
-          fontWeight="700"
-          color="rgba(48,64,80,1)"
-          lineHeight="30px"
-          textAlign="left"
-          display="flex"
-          direction="column"
-          justifyContent="flex-start"
-          shrink="0"
-          alignSelf="stretch"
-          objectFit="cover"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="Tags"
-          {...getOverrideProps(overrides, "label31563067")}
-        ></Text>
-        <CheckboxField
-          display="flex"
-          gap="12px"
-          direction="row"
-          width="fit-content"
-          justifyContent="center"
-          alignItems="center"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          label="Checkbox "
-          size="large"
-          defaultChecked={true}
-          isDisabled={false}
-          labelPosition="start"
-          {...getOverrideProps(overrides, "CheckboxField")}
-        ></CheckboxField>
         <Flex
-          gap="60px"
-          direction="row"
-          alignItems="center"
+          padding="0px 0px 0px 0px"
+          height="30px"
           shrink="0"
           alignSelf="stretch"
           objectFit="cover"
           position="relative"
-          padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Frame 318")}
+          {...getOverrideProps(overrides, "Group 28")}
         >
-          <Button
-            display="flex"
-            gap="0"
-            direction="row"
-            width="150px"
-            justifyContent="center"
-            alignItems="center"
-            shrink="0"
-            height="40px"
-            overflow="hidden"
-            position="relative"
-            size="default"
-            isDisabled={false}
-            variation="primary"
-            children="Choose File"
-            {...getOverrideProps(overrides, "Button31563068")}
-          ></Button>
-          <Text
-            fontFamily="Inter"
-            fontSize="20px"
-            fontWeight="400"
-            color="rgba(48,64,80,1)"
-            lineHeight="30px"
-            textAlign="left"
-            display="flex"
-            direction="column"
-            justifyContent="flex-start"
-            shrink="0"
-            position="relative"
+          <View
             padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="File"
-            {...getOverrideProps(overrides, "label31563073")}
-          ></Text>
+            width="936px"
+            height="30px"
+            position="absolute"
+            top="0px"
+            left="0px"
+            {...getOverrideProps(overrides, "Group 29")}
+          >
+            <View
+              padding="0px 0px 0px 0px"
+              width="936px"
+              height="30px"
+              position="absolute"
+              top="0px"
+              left="0px"
+              {...getOverrideProps(overrides, "Group 31")}
+            >
+              <View
+                padding="0px 0px 0px 0px"
+                width="936px"
+                height="30px"
+                position="absolute"
+                top="0px"
+                left="0px"
+                {...getOverrideProps(overrides, "Group 30")}
+              >
+                <Text
+                  fontFamily="Inter"
+                  fontSize="20px"
+                  fontWeight="400"
+                  color="rgba(48,64,80,1)"
+                  lineHeight="30px"
+                  textAlign="left"
+                  display="flex"
+                  direction="column"
+                  justifyContent="flex-start"
+                  width="936px"
+                  position="absolute"
+                  top="0%"
+                  bottom="0%"
+                  left="calc(50% - 468px - 0px)"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children="Tags"
+                  {...getOverrideProps(overrides, "label")}
+                ></Text>
+              </View>
+            </View>
+          </View>
         </Flex>
+        <Flex
+          gap="0"
+          direction="column"
+          justifyContent="center"
+          shrink="0"
+          position="relative"
+          borderRadius="16px 16px 16px 16px"
+          padding="16px 16px 16px 16px"
+          backgroundColor="rgba(255,255,255,1)"
+          {...getOverrideProps(overrides, "div_tags")}
+        ></Flex>
+        <Flex
+          gap="0"
+          direction="column"
+          justifyContent="center"
+          shrink="0"
+          position="relative"
+          borderRadius="16px 16px 16px 16px"
+          padding="16px 16px 16px 16px"
+          backgroundColor="rgba(255,255,255,1)"
+          {...getOverrideProps(overrides, "div_choose")}
+        ></Flex>
         <Button
           display="flex"
           gap="0"
@@ -170,7 +170,7 @@ export default function FileUpload(props) {
           isDisabled={false}
           variation="primary"
           children="Upload"
-          {...getOverrideProps(overrides, "Button31563077")}
+          {...getOverrideProps(overrides, "btn_upload")}
         ></Button>
       </Flex>
     </Flex>

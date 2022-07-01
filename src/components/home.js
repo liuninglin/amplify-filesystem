@@ -1,6 +1,6 @@
 import { HeroLayout2 as UIHome } from "../ui-components";
 
-const Home = () => {
+const Home = (setAlert, setAlertContent) => {
   return <UIHome width={"100vw"}></UIHome>;
 };
 
