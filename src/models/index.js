@@ -2,12 +2,16 @@
 import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
+const FileType = {
+  "CONFIDENTIAL": "CONFIDENTIAL",
+  "PUBLIC": "PUBLIC"
+};
 
-
-const { User, Document, Category } = initSchema(schema);
+const { Tag, Document, User } = initSchema(schema);
 
 export {
-  User,
+  Tag,
   Document,
-  Category
+  User,
+  FileType
 };

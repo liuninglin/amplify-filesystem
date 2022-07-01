@@ -1,20 +1,27 @@
-type User @model @auth(rules: [{allow: public}]) {
+enum FileType {
+  CONFIDENTIAL
+  PUBLIC
+}
+
+type Tag @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
-  location: String
-  sub: String!
+  Documents: [Document] @hasMany(indexName: "byTag", fields: ["id"])
 }
 
 type Document @model @auth(rules: [{allow: public}]) {
   id: ID!
-  title: String!
-  description: String
-  path: String!
-  categoryID: ID! @index(name: "byCategory")
+  filename: String!
+  filetype: FileType
+  tagID: ID! @index(name: "byTag")
 }
 
-type Category @model @auth(rules: [{allow: public}]) {
+type User @model @auth(rules: [{allow: public}]) {
   id: ID!
-  name: String!
-  Documents: [Document] @hasMany(indexName: "byCategory", fields: ["id"])
-} 
+  email: String!
+  name: String
+  sub: String!
+  location: String
+  last_login_time: AWSDateTime
+}
+ 

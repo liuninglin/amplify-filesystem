@@ -10,20 +10,18 @@ import {
   getOverrideProps,
   useAuthSignOutAction,
 } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
+import { Button, Flex, Image, Text, View } from "@aws-amplify/ui-react";
 export default function ProfileCard(props) {
-  const { user, overrides, ...rest } = props;
-  const buttonOnClick = useAuthSignOutAction({ global: false });
+  const { overrides, ...rest } = props;
+  const btnUnderScoreeditUnderScoreprofileOnClick = useAuthSignOutAction({
+    global: true,
+  });
   return (
-    <Flex
-      gap="24px"
-      direction="column"
-      width="320px"
-      height="350px"
-      justifyContent="space-between"
-      alignItems="center"
+    <View
+      width="208px"
+      height="355px"
       position="relative"
-      padding="24px 24px 24px 24px"
+      padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
       {...rest}
       {...getOverrideProps(overrides, "ProfileCard")}
@@ -31,58 +29,80 @@ export default function ProfileCard(props) {
       <Image
         width="160px"
         height="160px"
-        shrink="0"
-        position="relative"
+        position="absolute"
+        top="24px"
+        left="24px"
         borderRadius="160px"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "image")}
+        {...getOverrideProps(overrides, "img_avatar")}
       ></Image>
+      <Text
+        fontFamily="Inter"
+        fontSize="20px"
+        fontWeight="700"
+        color="rgba(13,26,38,1)"
+        lineHeight="25px"
+        textAlign="center"
+        display="flex"
+        direction="column"
+        justifyContent="flex-start"
+        position="absolute"
+        top="208px"
+        left="26px"
+        padding="0px 0px 0px 0px"
+        whiteSpace="pre-wrap"
+        children="Melinda Marcus"
+        {...getOverrideProps(overrides, "txt_name")}
+      ></Text>
       <Flex
         gap="8px"
+        position="absolute"
+        top="257px"
+        left="24px"
         direction="column"
+        width="160px"
+        justifyContent="flex-end"
         alignItems="center"
-        shrink="0"
-        position="relative"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Name")}
+        {...getOverrideProps(overrides, "Buttons")}
       >
-        <Text
-          fontFamily="Inter"
-          fontSize="20px"
-          fontWeight="700"
-          color="rgba(13,26,38,1)"
-          lineHeight="25px"
-          textAlign="center"
+        <Button
           display="flex"
-          direction="column"
-          justifyContent="flex-start"
+          gap="0"
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
           shrink="0"
+          alignSelf="stretch"
+          objectFit="cover"
           position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children={user?.name}
-          {...getOverrideProps(overrides, "Melinda Marcus")}
-        ></Text>
+          size="small"
+          isDisabled={false}
+          variation="primary"
+          children="Edit Profile"
+          onClick={() => {
+            btnUnderScoreeditUnderScoreprofileOnClick();
+          }}
+          {...getOverrideProps(overrides, "btn_edit_profile")}
+        ></Button>
+        <Button
+          display="flex"
+          gap="0"
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          shrink="0"
+          alignSelf="stretch"
+          objectFit="cover"
+          position="relative"
+          backgroundColor="rgba(149,4,4,1)"
+          size="small"
+          isDisabled={false}
+          variation="primary"
+          children="Logout"
+          {...getOverrideProps(overrides, "btn_logout")}
+        ></Button>
       </Flex>
-      <Button
-        display="flex"
-        gap="0"
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        shrink="0"
-        alignSelf="stretch"
-        objectFit="cover"
-        position="relative"
-        size="large"
-        isDisabled={false}
-        variation="primary"
-        children="Log Out"
-        onClick={() => {
-          buttonOnClick();
-        }}
-        {...getOverrideProps(overrides, "Button")}
-      ></Button>
-    </Flex>
+    </View>
   );
 }

@@ -8,16 +8,31 @@
 import React from "react";
 import {
   getOverrideProps,
-  useAuthSignOutAction,
   useNavigateAction,
 } from "@aws-amplify/ui-react/internal";
-import { Flex, Icon, SearchField, Text } from "@aws-amplify/ui-react";
+import { Button, Flex, Icon, SearchField, Text } from "@aws-amplify/ui-react";
 export default function NavBar(props) {
   const { overrides, ...rest } = props;
-  const homeOnClick = useNavigateAction({ type: "url", url: "/" });
-  const fileOnClick = useNavigateAction({ type: "url", url: "/file" });
-  const uploadOnClick = useNavigateAction({ type: "url", url: "/upload" });
-  const logoutOnClick = useAuthSignOutAction({ global: true });
+  const buttonThreeOneFiveFourTwoSixEightZeroOnClick = useNavigateAction({
+    type: "url",
+    url: "/home",
+  });
+  const buttonThreeOneFiveFourTwoSixEightSevenOnClick = useNavigateAction({
+    type: "url",
+    url: "/file",
+  });
+  const buttonThreeOneFiveFourTwoSixNineOneOnClick = useNavigateAction({
+    type: "url",
+    url: "/upload",
+  });
+  const buttonThreeOneFiveEightTwoSevenTwoOneOnClick = useNavigateAction({
+    type: "url",
+    url: "/user",
+  });
+  const buttonThreeOneFiveEightTwoSevenTwoFiveOnClick = useNavigateAction({
+    type: "url",
+    url: "",
+  });
   return (
     <Flex
       gap="20px"
@@ -35,7 +50,7 @@ export default function NavBar(props) {
         gap="2px"
         direction="row"
         width="fit-content"
-        height="40px"
+        height="45px"
         justifyContent="center"
         alignItems="center"
         shrink="0"
@@ -78,149 +93,207 @@ export default function NavBar(props) {
           {...getOverrideProps(overrides, "Logo29767075")}
         ></Text>
       </Flex>
-      <Flex
-        gap="40px"
-        direction="row"
-        width="601px"
-        alignItems="center"
-        grow="1"
-        basis="601px"
-        height="24px"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 32129767076")}
-      >
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="400"
-          color="rgba(0,0,0,1)"
-          lineHeight="24px"
-          textAlign="left"
-          display="flex"
-          direction="column"
-          justifyContent="flex-start"
-          letterSpacing="0.01px"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="Home"
-          onClick={() => {
-            homeOnClick();
-          }}
-          {...getOverrideProps(overrides, "Home")}
-        ></Text>
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="400"
-          color="rgba(0,0,0,1)"
-          lineHeight="24px"
-          textAlign="left"
-          display="flex"
-          direction="column"
-          justifyContent="flex-start"
-          letterSpacing="0.01px"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="File"
-          onClick={() => {
-            fileOnClick();
-          }}
-          {...getOverrideProps(overrides, "File")}
-        ></Text>
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="400"
-          color="rgba(0,0,0,1)"
-          lineHeight="24px"
-          textAlign="left"
-          display="flex"
-          direction="column"
-          justifyContent="flex-start"
-          letterSpacing="0.01px"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="Upload"
-          onClick={() => {
-            uploadOnClick();
-          }}
-          {...getOverrideProps(overrides, "Upload")}
-        ></Text>
-      </Flex>
-      <SearchField
+      <Button
         display="flex"
-        gap="8px"
-        direction="column"
-        width="300px"
-        shrink="0"
-        height="40px"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        placeholder="Placeholder"
-        size="default"
-        isDisabled={false}
-        labelHidden={true}
-        variation="default"
-        {...getOverrideProps(overrides, "SearchField")}
-      ></SearchField>
-      <Flex
-        gap="32px"
+        gap="0"
         direction="row"
-        width="272px"
+        width="fit-content"
+        justifyContent="center"
+        alignItems="center"
+        shrink="0"
+        height="33px"
+        position="relative"
+        size="small"
+        isDisabled={false}
+        variation="link"
+        children="Home"
+        onClick={() => {
+          buttonThreeOneFiveFourTwoSixEightZeroOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button31542680")}
+      ></Button>
+      <Button
+        display="flex"
+        gap="0"
+        direction="row"
+        width="fit-content"
+        justifyContent="center"
+        alignItems="center"
+        shrink="0"
+        height="33px"
+        position="relative"
+        size="small"
+        isDisabled={false}
+        variation="link"
+        children="File"
+        onClick={() => {
+          buttonThreeOneFiveFourTwoSixEightSevenOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button31542687")}
+      ></Button>
+      <Button
+        display="flex"
+        gap="0"
+        direction="row"
+        width="fit-content"
+        justifyContent="center"
+        alignItems="center"
+        shrink="0"
+        height="33px"
+        position="relative"
+        size="small"
+        isDisabled={false}
+        variation="link"
+        children="Upload"
+        onClick={() => {
+          buttonThreeOneFiveFourTwoSixNineOneOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button31542691")}
+      ></Button>
+      <Button
+        display="flex"
+        gap="0"
+        direction="row"
+        width="fit-content"
+        justifyContent="center"
+        alignItems="center"
+        shrink="0"
+        height="33px"
+        position="relative"
+        size="small"
+        isDisabled={false}
+        variation="link"
+        children="User"
+        onClick={() => {
+          buttonThreeOneFiveEightTwoSevenTwoOneOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button31582721")}
+      ></Button>
+      <Button
+        display="flex"
+        gap="0"
+        direction="row"
+        width="fit-content"
+        justifyContent="center"
+        alignItems="center"
+        shrink="0"
+        height="33px"
+        position="relative"
+        size="small"
+        isDisabled={false}
+        variation="link"
+        children="Profile"
+        onClick={() => {
+          buttonThreeOneFiveEightTwoSevenTwoFiveOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button31582725")}
+      ></Button>
+      <Flex
+        gap="20px"
+        direction="row"
+        width="874px"
+        height="45px"
         justifyContent="flex-end"
         alignItems="center"
-        shrink="0"
-        height="24px"
+        grow="1"
+        basis="874px"
         position="relative"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 32129767081")}
+        {...getOverrideProps(overrides, "Frame 321")}
       >
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="400"
-          color="rgba(0,0,0,1)"
-          lineHeight="24px"
-          textAlign="left"
-          display="flex"
-          direction="column"
-          justifyContent="flex-start"
-          letterSpacing="0.01px"
-          shrink="0"
+        <Flex
+          gap="20px"
+          direction="row"
+          width="689px"
+          height="45px"
+          alignItems="center"
+          grow="1"
+          basis="689px"
           position="relative"
           padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          {...getOverrideProps(overrides, "username")}
-        ></Text>
+          {...getOverrideProps(overrides, "Frame 322")}
+        >
+          <SearchField
+            display="flex"
+            gap="8px"
+            direction="column"
+            width="300px"
+            shrink="0"
+            height="40px"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            placeholder="Placeholder"
+            size="default"
+            isDisabled={false}
+            labelHidden={true}
+            variation="default"
+            {...getOverrideProps(overrides, "SearchField")}
+          ></SearchField>
+        </Flex>
+        <Flex
+          gap="0"
+          direction="column"
+          justifyContent="center"
+          alignItems="stretch"
+          shrink="0"
+          height="42px"
+          position="relative"
+          padding="0px 10px 0px 10px"
+          {...getOverrideProps(overrides, "Frame 406")}
+        >
+          <Text
+            fontFamily="Inter"
+            fontSize="14px"
+            fontWeight="700"
+            color="rgba(13,26,38,1)"
+            lineHeight="21px"
+            textAlign="left"
+            display="flex"
+            direction="column"
+            justifyContent="flex-start"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children="name"
+            {...getOverrideProps(overrides, "name")}
+          ></Text>
+          <Text
+            fontFamily="Inter"
+            fontSize="14px"
+            fontWeight="700"
+            color="rgba(13,26,38,1)"
+            lineHeight="21px"
+            textAlign="left"
+            display="flex"
+            direction="column"
+            justifyContent="flex-start"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children="sub"
+            {...getOverrideProps(overrides, "sub")}
+          ></Text>
+        </Flex>
+        <Button
+          display="flex"
+          gap="0"
+          direction="row"
+          width="87px"
+          justifyContent="center"
+          alignItems="center"
+          shrink="0"
+          height="40px"
+          overflow="hidden"
+          position="relative"
+          size="default"
+          isDisabled={false}
+          variation="primary"
+          children="Logout"
+          {...getOverrideProps(overrides, "btn_logout")}
+        ></Button>
       </Flex>
-      <Text
-        fontFamily="Inter"
-        fontSize="16px"
-        fontWeight="400"
-        color="rgba(0,0,0,1)"
-        lineHeight="24px"
-        textAlign="left"
-        display="flex"
-        direction="column"
-        justifyContent="flex-start"
-        letterSpacing="0.01px"
-        shrink="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children="Logout"
-        onClick={() => {
-          logoutOnClick();
-        }}
-        {...getOverrideProps(overrides, "Logout")}
-      ></Text>
     </Flex>
   );
 }

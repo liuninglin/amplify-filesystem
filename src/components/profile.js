@@ -3,11 +3,11 @@ import { ProfileCard as UIProfileCard } from "../ui-components";
 
 const Profile = ({ user, signOut }) => {
   const overrides = {
-        username: '123',
-      Avatar: {
+      img_avatar: {
           src: 'https://picsum.photos/id/1005/160/160?blur=2'
       },
-      SignOutBtn: {
+      txt_name: user?.name,
+      btn_logout: {
           onClick: (e) => signOut(),
       }
   };

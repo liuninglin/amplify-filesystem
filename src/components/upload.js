@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Amplify, Storage } from "aws-amplify";
 // custom hook to get the current pathname in React
+import { FileUpload as UIFileUpload } from "../ui-components";
 
 const Upload = () => {
     const [fileData, setFileData] = useState([]);
@@ -22,6 +23,8 @@ const Upload = () => {
 
             {fileStatus ? 'Uploaded successfully' : ''}
         </div>
+        
+        // <UIFileUpload width={"50vw"} margin={"auto"} marginBottom={"50px"}></UIFileUpload>
     );
 };
 

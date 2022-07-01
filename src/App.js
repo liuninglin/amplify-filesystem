@@ -5,15 +5,49 @@ import {
   Route,
 } from "react-router-dom";
 import { Amplify } from "aws-amplify";
+import {
+  useNavigateAction,
+} from "@aws-amplify/ui-react/internal";
 import { AmplifyProvider, Authenticator, Image, useTheme, View, withAuthenticator } from "@aws-amplify/ui-react";
 import { studioTheme } from './ui-components';
 import { NavBar, SideBar, ViewProfile, File, Upload, Footer, Home } from './components';
 import awsconfig from "./aws-exports";
 import logo from './logo.svg';
+import { Hub } from 'aws-amplify';
+import AuthContextProvider from "./contexts/AuthContext";
 
 // import { RouteNavigation } from './routers';
 import "@aws-amplify/ui-react/styles.css";
 import './App.css';
+
+import { addUser, updateLoginTimeForUser } from './api/user'
+
+Hub.listen('auth', (data) => {
+  switch (data.payload.event) {
+    case 'signIn':
+        console.log('user signed in');
+        // console.log(data);
+        updateLoginTimeForUser(data.payload.data.attributes.sub);
+        break;
+    case 'signUp':
+        console.log('user signed up');
+        // console.log(data);
+        addUser(data.payload.data.userSub, data.payload.data.user.username);
+        break;
+    case 'signOut':
+        console.log('user signed out');
+        useNavigateAction({
+          type: "url",
+          url: "/",
+        });
+        break;
+    case 'signIn_failure':
+        console.log('user sign in failed');
+        break;
+    case 'configured':
+        console.log('the Auth module is configured');
+  }
+});
 
 Amplify.configure({
   ...awsconfig,
@@ -62,16 +96,18 @@ function App({signOut, user}) {
   return (
     <AmplifyProvider theme={studioTheme}>
       <Authenticator variation="modal" components={components}>
-        <NavBar />
-        <Router>
-            <Routes>
-                <Route element={<Home/>} path="/" />
-                <Route element={<File/>} path="/file" />
-                <Route element={<Upload/>} path="/upload" />
-            </Routes>
-        </Router>
-        <Footer />
-
+        <AuthContextProvider>
+          <NavBar />
+          <Router>
+              <Routes>
+                  <Route element={<Home/>} path="/" />
+                  <Route element={<File/>} path="/file" />
+                  <Route element={<Upload/>} path="/upload" />
+              </Routes>
+          </Router>
+          <Footer />
+        </AuthContextProvider>
+        
         {/* <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />

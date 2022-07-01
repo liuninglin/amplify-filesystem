@@ -6,8 +6,8 @@
 
 import React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { ViewProps } from "@aws-amplify/ui-react";
-export declare type ProfileCardProps = React.PropsWithChildren<Partial<ViewProps> & {
+import { FlexProps } from "@aws-amplify/ui-react";
+export declare type FileUploadProps = React.PropsWithChildren<Partial<FlexProps> & {
     overrides?: EscapeHatchProps | undefined | null;
 }>;
-export default function ProfileCard(props: ProfileCardProps): React.ReactElement;
+export default function FileUpload(props: FileUploadProps): React.ReactElement;
