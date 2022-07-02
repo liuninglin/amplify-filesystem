@@ -7,11 +7,12 @@ const FileType = {
   "PUBLIC": "PUBLIC"
 };
 
-const { Tag, Document, User } = initSchema(schema);
+const { Tag, Document, User, TagDocument } = initSchema(schema);
 
 export {
   Tag,
   Document,
   User,
+  TagDocument,
   FileType
 };

@@ -19,10 +19,14 @@ type UserMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
+type TagDocumentMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 export declare class Tag {
   readonly id: string;
   readonly name: string;
-  readonly Documents?: (Document | null)[] | null;
+  readonly documents?: (TagDocument | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Tag, TagMetaData>);
@@ -33,7 +37,8 @@ export declare class Document {
   readonly id: string;
   readonly filename: string;
   readonly filetype?: FileType | keyof typeof FileType | null;
-  readonly tagID: string;
+  readonly tags?: (TagDocument | null)[] | null;
+  readonly description?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Document, DocumentMetaData>);
@@ -51,4 +56,14 @@ export declare class User {
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<User, UserMetaData>);
   static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
+}
+
+export declare class TagDocument {
+  readonly id: string;
+  readonly tag: Tag;
+  readonly document: Document;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  constructor(init: ModelInit<TagDocument, TagDocumentMetaData>);
+  static copyOf(source: TagDocument, mutator: (draft: MutableModel<TagDocument, TagDocumentMetaData>) => MutableModel<TagDocument, TagDocumentMetaData> | void): TagDocument;
 }

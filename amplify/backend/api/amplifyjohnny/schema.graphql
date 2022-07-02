@@ -6,14 +6,15 @@ enum FileType {
 type Tag @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
-  Documents: [Document] @hasMany(indexName: "byTag", fields: ["id"])
+  documents: [Document] @manyToMany(relationName: "TagDocument")
 }
 
 type Document @model @auth(rules: [{allow: public}]) {
   id: ID!
   filename: String!
   filetype: FileType
-  tagID: ID! @index(name: "byTag")
+  tags: [Tag] @manyToMany(relationName: "TagDocument")
+  description: String
 }
 
 type User @model @auth(rules: [{allow: public}]) {

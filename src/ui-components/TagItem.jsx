@@ -9,7 +9,7 @@ import React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { CheckboxField, Flex } from "@aws-amplify/ui-react";
 export default function TagItem(props) {
-  const { overrides, ...rest } = props;
+  const { tag, overrides, ...rest } = props;
   return (
     <Flex
       gap="0"
@@ -31,9 +31,9 @@ export default function TagItem(props) {
         height="30px"
         position="relative"
         padding="0px 0px 0px 0px"
-        label="Checkbox "
+        label={tag?.name}
         size="large"
-        defaultChecked={true}
+        defaultChecked={false}
         isDisabled={false}
         labelPosition="start"
         {...getOverrideProps(overrides, "check_tag_item")}

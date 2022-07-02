@@ -5,9 +5,12 @@
  **************************************************************************/
 
 import React from "react";
+import { Tag } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { FlexProps } from "@aws-amplify/ui-react";
 export declare type TagItemProps = React.PropsWithChildren<Partial<FlexProps> & {
+    tag?: Tag;
+} & {
     overrides?: EscapeHatchProps | undefined | null;
 }>;
 export default function TagItem(props: TagItemProps): React.ReactElement;

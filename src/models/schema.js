@@ -17,18 +17,18 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Documents": {
-                    "name": "Documents",
+                "documents": {
+                    "name": "documents",
                     "isArray": true,
                     "type": {
-                        "model": "Document"
+                        "model": "TagDocument"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "tagID"
+                        "associatedWith": "tag"
                     }
                 },
                 "createdAt": {
@@ -99,11 +99,25 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "tagID": {
-                    "name": "tagID",
+                "tags": {
+                    "name": "tags",
+                    "isArray": true,
+                    "type": {
+                        "model": "TagDocument"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "document"
+                    }
+                },
+                "description": {
+                    "name": "description",
                     "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "createdAt": {
@@ -129,15 +143,6 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byTag",
-                        "fields": [
-                            "tagID"
-                        ]
-                    }
                 },
                 {
                     "type": "auth",
@@ -243,6 +248,86 @@ export const schema = {
                     }
                 }
             ]
+        },
+        "TagDocument": {
+            "name": "TagDocument",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "tag": {
+                    "name": "tag",
+                    "isArray": false,
+                    "type": {
+                        "model": "Tag"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "tagID"
+                    }
+                },
+                "document": {
+                    "name": "document",
+                    "isArray": false,
+                    "type": {
+                        "model": "Document"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "documentID"
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "TagDocuments",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byTag",
+                        "fields": [
+                            "tagID"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byDocument",
+                        "fields": [
+                            "documentID"
+                        ]
+                    }
+                }
+            ]
         }
     },
     "enums": {
@@ -255,5 +340,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "f71d560995b7902c51c30ef7e9b722a4"
+    "version": "53196bc0c34d72a4d580bb566b62266b"
 };

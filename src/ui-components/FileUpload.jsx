@@ -39,6 +39,36 @@ export default function FileUpload(props) {
         padding="0px 32px 0px 32px"
         {...getOverrideProps(overrides, "Frame 406")}
       >
+        <Text
+          fontFamily="Inter"
+          fontSize="20px"
+          fontWeight="400"
+          color="rgba(48,64,80,1)"
+          lineHeight="30px"
+          textAlign="left"
+          display="flex"
+          direction="column"
+          justifyContent="flex-start"
+          shrink="0"
+          alignSelf="stretch"
+          objectFit="cover"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          whiteSpace="pre-wrap"
+          children="File*"
+          {...getOverrideProps(overrides, "label31982866")}
+        ></Text>
+        <Flex
+          gap="0"
+          direction="column"
+          justifyContent="center"
+          shrink="0"
+          position="relative"
+          borderRadius="16px 16px 16px 16px"
+          padding="0px 16px 0px 16px"
+          backgroundColor="rgba(255,255,255,1)"
+          {...getOverrideProps(overrides, "div_choose")}
+        ></Flex>
         <TextField
           display="flex"
           direction="column"
@@ -48,13 +78,13 @@ export default function FileUpload(props) {
           objectFit="cover"
           position="relative"
           padding="0px 0px 0px 0px"
-          label="Name"
-          placeholder="Placeholder"
+          label="Description*"
+          placeholder="type the file description"
           size="large"
           isDisabled={false}
           labelHidden={false}
           variation="default"
-          {...getOverrideProps(overrides, "field_name")}
+          {...getOverrideProps(overrides, "field_description")}
         ></TextField>
         <SelectField
           display="flex"
@@ -65,8 +95,8 @@ export default function FileUpload(props) {
           objectFit="cover"
           position="relative"
           padding="0px 0px 0px 0px"
-          label="Type"
-          placeholder="Placeholder"
+          label="Type*"
+          placeholder="Choose one file type below."
           size="large"
           isDisabled={false}
           labelHidden={false}
@@ -127,7 +157,7 @@ export default function FileUpload(props) {
                   padding="0px 0px 0px 0px"
                   whiteSpace="pre-wrap"
                   children="Tags"
-                  {...getOverrideProps(overrides, "label")}
+                  {...getOverrideProps(overrides, "label31563067")}
                 ></Text>
               </View>
             </View>
@@ -140,20 +170,9 @@ export default function FileUpload(props) {
           shrink="0"
           position="relative"
           borderRadius="16px 16px 16px 16px"
-          padding="16px 16px 16px 16px"
+          padding="0px 16px 0px 16px"
           backgroundColor="rgba(255,255,255,1)"
           {...getOverrideProps(overrides, "div_tags")}
-        ></Flex>
-        <Flex
-          gap="0"
-          direction="column"
-          justifyContent="center"
-          shrink="0"
-          position="relative"
-          borderRadius="16px 16px 16px 16px"
-          padding="16px 16px 16px 16px"
-          backgroundColor="rgba(255,255,255,1)"
-          {...getOverrideProps(overrides, "div_choose")}
         ></Flex>
         <Button
           display="flex"
