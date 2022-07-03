@@ -6,40 +6,40 @@
 
 /* eslint-disable */
 import React from "react";
-import { Tag } from "../models";
+import { SortDirection } from "@aws-amplify/datastore";
+import { Document } from "../models";
 import {
   getOverrideProps,
   useDataStoreBinding,
 } from "@aws-amplify/ui-react/internal";
-import TagItem from "./TagItem";
+import DocumentItem from "./DocumentItem";
 import { Collection } from "@aws-amplify/ui-react";
-export default function TagItemCollection(props) {
+export default function DocumentItemCollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
+  const itemsPagination = {
+    sort: (s) => s.updatedAt(SortDirection.DESCENDING),
+  };
   const itemsDataStore = useDataStoreBinding({
     type: "collection",
-    model: Tag,
+    model: Document,
+    pagination: itemsPagination,
   }).items;
   const items = itemsProp !== undefined ? itemsProp : itemsDataStore;
   return (
     <Collection
-      type="grid"
-      searchPlaceholder="Search..."
-      templateColumns="1fr 1fr"
-      autoFlow="row"
-      alignItems="stretch"
+      type="list"
+      direction="column"
       justifyContent="stretch"
       items={items || []}
       {...rest}
-      {...getOverrideProps(overrides, "TagItemCollection")}
+      {...getOverrideProps(overrides, "DocumentItemCollection")}
     >
       {(item, index) => (
-        <TagItem
-          tag={item}
-          width="auto"
-          margin="0 25px 0 0"
+        <DocumentItem
+          document={item}
           key={item.id}
           {...(overrideItems && overrideItems({ item, index }))}
-        ></TagItem>
+        ></DocumentItem>
       )}
     </Collection>
   );

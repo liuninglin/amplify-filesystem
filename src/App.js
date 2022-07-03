@@ -10,7 +10,7 @@ import {
 } from "@aws-amplify/ui-react/internal";
 import { AmplifyProvider, Authenticator, Image, useTheme, View, withAuthenticator, Flex } from "@aws-amplify/ui-react";
 import { studioTheme, AlertSuccess, AlertWarning, AlertError } from './ui-components';
-import { NavBar, SideBar, ViewProfile, File, Upload, Footer, Home } from './components';
+import { NavBar, SideBar, ViewProfile, Document, Upload, Footer, Home } from './components';
 import awsconfig from "./aws-exports";
 import logo from './logo.svg';
 import { Hub } from 'aws-amplify';
@@ -128,8 +128,10 @@ function App({signOut, user}) {
             
             <Router>
               <Routes>
-                  <Route element={<Home setAlert={setAlert} setAlertContent={setAlertContent} />} path="/" />
-                  <Route element={<File/>} path="/file" />
+                  {/* <Route element={<Home setAlert={setAlert} setAlertContent={setAlertContent} />} path="/" /> */}
+                  <Route element={<Document/>} path="/" />
+                  <Route element={<Document/>} path="/home" />
+                  <Route element={<Document/>} path="/document" />
                   <Route element={<Upload setAlert={setAlert} setAlertContent={setAlertContent} />} path="/upload" />
               </Routes>
             </Router>

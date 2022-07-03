@@ -11,9 +11,9 @@ import {
   getOverrideProps,
   useDataStoreBinding,
 } from "@aws-amplify/ui-react/internal";
-import TagItem from "./TagItem";
+import TagShowItem from "./TagShowItem";
 import { Collection } from "@aws-amplify/ui-react";
-export default function TagItemCollection(props) {
+export default function TagShowItemCollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
   const itemsDataStore = useDataStoreBinding({
     type: "collection",
@@ -26,20 +26,21 @@ export default function TagItemCollection(props) {
       searchPlaceholder="Search..."
       templateColumns="1fr 1fr"
       autoFlow="row"
-      alignItems="stretch"
+      alignItems="top"
       justifyContent="stretch"
       items={items || []}
       {...rest}
-      {...getOverrideProps(overrides, "TagItemCollection")}
+      {...getOverrideProps(overrides, "TagShowItemCollection")}
     >
       {(item, index) => (
-        <TagItem
+        <TagShowItem
           tag={item}
+          height="auto"
           width="auto"
-          margin="0 25px 0 0"
+          margin="0 50px 0 0"
           key={item.id}
           {...(overrideItems && overrideItems({ item, index }))}
-        ></TagItem>
+        ></TagShowItem>
       )}
     </Collection>
   );

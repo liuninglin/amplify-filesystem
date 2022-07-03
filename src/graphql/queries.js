@@ -21,14 +21,41 @@ query ListDocuments {
         _deleted
         _lastChangedAt
         _version
+        categoryID
         createdAt
-        description
-        filename
-        filetype
+        name
         id
+        filetype
+        filename
+        description
         updatedAt
+        tags {
+          items {
+            id
+            tag {
+              name
+              id
+            }
+          }
+        }
       }
     }
   }  
+`;
+
+export const listCategories = `
+query ListCategories {
+  listCategories {
+    items {
+      _deleted
+      _lastChangedAt
+      _version
+      createdAt
+      id
+      name
+      updatedAt
+    }
+  }
+}
 `;
 

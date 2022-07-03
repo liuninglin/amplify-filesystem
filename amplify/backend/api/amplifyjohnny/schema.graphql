@@ -1,6 +1,7 @@
-enum FileType {
-  CONFIDENTIAL
-  PUBLIC
+type Category @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  Documents: [Document] @hasMany(indexName: "byCategory", fields: ["id"])
 }
 
 type Tag @model @auth(rules: [{allow: public}]) {
@@ -12,9 +13,11 @@ type Tag @model @auth(rules: [{allow: public}]) {
 type Document @model @auth(rules: [{allow: public}]) {
   id: ID!
   filename: String!
-  filetype: FileType
   tags: [Tag] @manyToMany(relationName: "TagDocument")
+  filetype: String!
   description: String
+  categoryID: ID! @index(name: "byCategory")
+  name: String!
 }
 
 type User @model @auth(rules: [{allow: public}]) {

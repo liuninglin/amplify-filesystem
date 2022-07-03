@@ -19,7 +19,7 @@ export default function NavBar(props) {
   });
   const buttonThreeOneFiveFourTwoSixEightSevenOnClick = useNavigateAction({
     type: "url",
-    url: "/file",
+    url: "/document",
   });
   const buttonThreeOneFiveFourTwoSixNineOneOnClick = useNavigateAction({
     type: "url",
@@ -125,7 +125,7 @@ export default function NavBar(props) {
         size="small"
         isDisabled={false}
         variation="link"
-        children="File"
+        children="Document"
         onClick={() => {
           buttonThreeOneFiveFourTwoSixEightSevenOnClick();
         }}
@@ -191,12 +191,12 @@ export default function NavBar(props) {
       <Flex
         gap="20px"
         direction="row"
-        width="874px"
+        width="828px"
         height="45px"
         justifyContent="flex-end"
         alignItems="center"
         grow="1"
-        basis="874px"
+        basis="828px"
         position="relative"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 321")}
@@ -204,11 +204,11 @@ export default function NavBar(props) {
         <Flex
           gap="20px"
           direction="row"
-          width="689px"
+          width="643px"
           height="45px"
           alignItems="center"
           grow="1"
-          basis="689px"
+          basis="643px"
           position="relative"
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Frame 322")}

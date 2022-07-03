@@ -35,7 +35,7 @@ export default function TagItem(props) {
         size="large"
         defaultChecked={false}
         isDisabled={false}
-        labelPosition="start"
+        labelPosition="end"
         {...getOverrideProps(overrides, "check_tag_item")}
       ></CheckboxField>
     </Flex>

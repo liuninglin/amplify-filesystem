@@ -1,17 +1,18 @@
 import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 
-export enum FileType {
-  CONFIDENTIAL = "CONFIDENTIAL",
-  PUBLIC = "PUBLIC"
-}
 
 
 
-type TagMetaData = {
+
+type CategoryMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
 type DocumentMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type TagMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -23,6 +24,30 @@ type TagDocumentMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
+export declare class Category {
+  readonly id: string;
+  readonly name: string;
+  readonly Documents?: (Document | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  constructor(init: ModelInit<Category, CategoryMetaData>);
+  static copyOf(source: Category, mutator: (draft: MutableModel<Category, CategoryMetaData>) => MutableModel<Category, CategoryMetaData> | void): Category;
+}
+
+export declare class Document {
+  readonly id: string;
+  readonly filename: string;
+  readonly tags?: (TagDocument | null)[] | null;
+  readonly filetype: string;
+  readonly description?: string | null;
+  readonly categoryID: string;
+  readonly name: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  constructor(init: ModelInit<Document, DocumentMetaData>);
+  static copyOf(source: Document, mutator: (draft: MutableModel<Document, DocumentMetaData>) => MutableModel<Document, DocumentMetaData> | void): Document;
+}
+
 export declare class Tag {
   readonly id: string;
   readonly name: string;
@@ -31,18 +56,6 @@ export declare class Tag {
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Tag, TagMetaData>);
   static copyOf(source: Tag, mutator: (draft: MutableModel<Tag, TagMetaData>) => MutableModel<Tag, TagMetaData> | void): Tag;
-}
-
-export declare class Document {
-  readonly id: string;
-  readonly filename: string;
-  readonly filetype?: FileType | keyof typeof FileType | null;
-  readonly tags?: (TagDocument | null)[] | null;
-  readonly description?: string | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-  constructor(init: ModelInit<Document, DocumentMetaData>);
-  static copyOf(source: Document, mutator: (draft: MutableModel<Document, DocumentMetaData>) => MutableModel<Document, DocumentMetaData> | void): Document;
 }
 
 export declare class User {
@@ -60,8 +73,8 @@ export declare class User {
 
 export declare class TagDocument {
   readonly id: string;
-  readonly tag: Tag;
   readonly document: Document;
+  readonly tag: Tag;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<TagDocument, TagDocumentMetaData>);

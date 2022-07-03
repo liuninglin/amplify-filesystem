@@ -8,5 +8,5 @@ export { default as Home } from "./home";
 export { default as Footer } from "./footer";
 
 
-export { default as File } from "./file";
+export { default as Document } from "./document";
 export { default as Upload } from "./upload";
