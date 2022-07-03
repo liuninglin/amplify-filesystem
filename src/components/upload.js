@@ -14,15 +14,20 @@ const Upload = ({ setAlert, setAlertContent }) => {
     const [tags, setTags] = useState([]);
     const [tagsValue, setTagsValue] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [categoryIdValue, setCategoryIdValue] = useState();
+    const [categoryIdValue, setCategoryIdValue] = useState("");
 
     const onNameChange = (evt) => setNameValue(evt.target.value);
     const onDescriptionChange = (evt) => setDescriptionValue(evt.target.value);
     const onCategoryChange = (evt) => setCategoryIdValue(evt.target.value);
 
     useEffect(() => {
-        queryTags();
-        queryCategories();
+        if (tags.length <= 0) {
+            queryTags();
+        }
+
+        if (categories.length <= 0) {
+            queryCategories();
+        }
     }, []);
 
     async function queryTags() {
@@ -46,7 +51,10 @@ const Upload = ({ setAlert, setAlertContent }) => {
     }
 
     const uploadFile = async () => {
-        if (descriptionValue.trim().length === 0) {
+        if (descriptionValue.trim().length === 0 ||
+            nameValue.trim().length === 0 ||
+            categoryIdValue.trim() === "" ||
+            !fileDataValue) {
             const overrides_alert = {
                 Alert: {
                     children: "Please type all required items!"
