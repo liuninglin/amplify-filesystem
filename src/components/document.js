@@ -19,7 +19,9 @@ const Document = () => {
     setDocuments(listDocuments.items);
   }
 
-  queryDocuments();
+  useEffect(() => {
+    queryDocuments();
+  }, []);
 
   const getFile = async (evt) => {
     const downloadButton = evt.currentTarget;

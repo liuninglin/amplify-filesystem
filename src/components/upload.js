@@ -20,8 +20,10 @@ const Upload = ({ setAlert, setAlertContent }) => {
     const onDescriptionChange = (evt) => setDescriptionValue(evt.target.value);
     const onCategoryChange = (evt) => setCategoryIdValue(evt.target.value);
 
-    queryTags();
-    queryCategories();
+    useEffect(() => {
+        queryTags();
+        queryCategories();
+    }, []);
 
     async function queryTags() {
         const {
