@@ -20,8 +20,11 @@ const Document = () => {
   }
 
   useEffect(() => {
-    queryDocuments();
+    if (documents.length <= 0) {
+      queryDocuments();
+    }
   }, []);
+
 
   const getFile = async (evt) => {
     const downloadButton = evt.currentTarget;
