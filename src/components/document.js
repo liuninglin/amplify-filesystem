@@ -21,6 +21,7 @@ const Document = () => {
         setDocuments(listDocuments.items);
       }
     };
+
     queryDocuments();
   }, []);
 
@@ -61,7 +62,7 @@ const Document = () => {
         style: {overflowY: "auto"}
       },
       div_tags: {
-        children: <TagShowItemCollection items={item.item.tags.items} overrideItems={overrideItemsTag}></TagShowItemCollection>
+        children: <TagShowItemCollection items={item?.item?.tags?.items} overrideItems={overrideItemsTag}></TagShowItemCollection>
       },
     }
   });
@@ -73,7 +74,7 @@ const Document = () => {
         height="300px"
         position="relative"
         padding="0px 0px 0px 0px"
-        src="document_archive1.jpeg"
+        src="document_archive.jpeg"
       />
       <DocumentItemCollection 
         alignItems="center"
