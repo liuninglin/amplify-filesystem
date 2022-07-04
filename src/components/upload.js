@@ -5,7 +5,7 @@ import { Upload as UIUpload, AlertSuccess, AlertWarning, TagItemCollection } fro
 import * as queries from '../graphql/queries';
 import { Document, TagDocument } from "../models";
 import { DataStore } from '@aws-amplify/datastore';
-import { Icon, SelectField } from '@aws-amplify/ui-react';
+import { SelectField } from '@aws-amplify/ui-react';
 
 const Upload = ({ setAlert, setAlertContent }) => {
     const [fileDataValue, setFileDataValue] = useState();
@@ -21,45 +21,41 @@ const Upload = ({ setAlert, setAlertContent }) => {
     const onCategoryChange = (evt) => setCategoryIdValue(evt.target.value);
 
     useEffect(() => {
-        if (tags.length <= 0) {
-            queryTags();
+        async function queryTags() {
+            const {
+                data: { listTags }
+            } = await API.graphql({
+                query: queries.listTags,
+                authMode: 'API_KEY',
+            });
+            setTags(listTags.items);
+        }
+    
+        async function queryCategories() {
+            const {
+                data: { listCategories }
+            } = await API.graphql({
+                query: queries.listCategories,
+                authMode: 'API_KEY',
+            });
+            setCategories(listCategories.items);
         }
 
-        if (categories.length <= 0) {
-            queryCategories();
-        }
-    }, []);
+        queryTags();
+        queryCategories();
+    }, [tags, categories]);
 
-    async function queryTags() {
-        const {
-            data: { listTags }
-        } = await API.graphql({
-            query: queries.listTags,
-            authMode: 'API_KEY',
-        });
-        setTags(listTags.items);
-    }
-
-    async function queryCategories() {
-        const {
-            data: { listCategories }
-        } = await API.graphql({
-            query: queries.listCategories,
-            authMode: 'API_KEY',
-        });
-        setCategories(listCategories.items);
-    }
-
+    
     const uploadFile = async () => {
         if (descriptionValue.trim().length === 0 ||
-            nameValue.trim().length === 0 ||
-            categoryIdValue.trim() === "" ||
-            !fileDataValue) {
+                nameValue.trim().length === 0 ||
+                categoryIdValue.trim() === "" ||
+                !fileDataValue) {
             const overrides_alert = {
                 Alert: {
                     children: "Please type all required items!"
                 }
-            }
+            };
             setAlert(true);
             setAlertContent(<AlertWarning width={"100vw"} overrides={overrides_alert} />);
 
@@ -69,12 +65,6 @@ const Upload = ({ setAlert, setAlertContent }) => {
         await Storage.put(fileDataValue.name, fileDataValue, {
             contentType: fileDataValue.type,
         });
-
-        console.log("nameValue: " + nameValue);
-        console.log("fileDataValue.name: " + fileDataValue.name);
-        console.log("fileDataValue.type: " + fileDataValue.type);
-        console.log("descriptionValue: " + descriptionValue);
-        console.log("categoryIdValue: " + categoryIdValue);
 
         const document = await DataStore.save(
             new Document({

@@ -9,22 +9,19 @@ import fileDownload from 'js-file-download'
 const Document = () => {
   const [documents, setDocuments] = useState([]);
 
-  async function queryDocuments() {
-    const {
-        data: { listDocuments }
-    } = await API.graphql({
-        query: queries.listDocuments,
-        authMode: 'API_KEY',
-    });
-    setDocuments(listDocuments.items);
-  }
-
   useEffect(() => {
-    if (documents.length <= 0) {
-      queryDocuments();
-    }
-  }, []);
+    async function queryDocuments() {
+      const {
+          data: { listDocuments }
+      } = await API.graphql({
+          query: queries.listDocuments,
+          authMode: 'API_KEY',
+      });
+      setDocuments(listDocuments.items);
+    };
 
+    queryDocuments();
+  }, [documents]);
 
   const getFile = async (evt) => {
     const downloadButton = evt.currentTarget;
