@@ -61,9 +61,9 @@ const Document = () => {
       txt_description: {
         style: {overflowY: "auto"}
       },
-      div_tags: {
-        children: <TagShowItemCollection items={item?.item?.tags?.items} overrideItems={overrideItemsTag}></TagShowItemCollection>
-      },
+      // div_tags: {
+      //   children: <TagShowItemCollection items={item?.item?.tags?.items} overrideItems={overrideItemsTag}></TagShowItemCollection>
+      // },
     }
   });
    
