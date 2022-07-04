@@ -21,7 +21,7 @@ const Document = () => {
     };
 
     queryDocuments();
-  }, [documents]);
+  }, []);
 
   const getFile = async (evt) => {
     const downloadButton = evt.currentTarget;
