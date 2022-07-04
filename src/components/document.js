@@ -40,7 +40,7 @@ const Document = () => {
   const overrideItemsTag = ({ item, _ }) => ({
     overrides: {
       txt_tag: {
-        children: item.tag.name
+        children: item?.tag?.name
       }
     }
   });
