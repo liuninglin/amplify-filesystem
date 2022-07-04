@@ -4,7 +4,7 @@ import { DocumentItemCollection, TagShowItemCollection } from "../ui-components"
 import { Image } from "@aws-amplify/ui-react";
 import { API } from "aws-amplify";
 import * as queries from '../graphql/queries';
-import fileDownload from 'js-file-download'
+// import fileDownload from 'js-file-download'
 
 const Document = () => {
   const [documents, setDocuments] = useState();
