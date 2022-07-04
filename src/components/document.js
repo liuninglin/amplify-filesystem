@@ -22,7 +22,7 @@ const Document = () => {
       }
     };
 
-    // queryDocuments();
+    queryDocuments();
   }, []);
 
   const getFile = async (evt) => {
