@@ -14,7 +14,7 @@ import { NavBar, SideBar, ViewProfile, Document, Upload, Footer, Home } from './
 import awsconfig from "./aws-exports";
 import logo from './logo.svg';
 import { Hub } from 'aws-amplify';
-import AuthContextProvider from "./contexts/AuthContext";
+// import AuthContextProvider from "./contexts/AuthContext";
 
 // import { RouteNavigation } from './routers';
 import "@aws-amplify/ui-react/styles.css";
@@ -99,8 +99,8 @@ function App({signOut, user}) {
   return (
     <AmplifyProvider theme={studioTheme}>
       <Authenticator variation="modal" components={components}>
-        <AuthContextProvider>
-          {/* <NavBar /> */}
+        {/* <AuthContextProvider> */}
+          <NavBar />
 
           { alert 
           ?
@@ -138,7 +138,7 @@ function App({signOut, user}) {
           </Flex>
 
           <Footer />
-        </AuthContextProvider>
+        {/* </AuthContextProvider> */}
         
         {/* <div className="App">
         <header className="App-header">
