@@ -69,13 +69,13 @@ const Document = () => {
    
   return (
     <div>
-      {/* <Image
+      <Image
         width={"100vw"}
         height="300px"
         position="relative"
         padding="0px 0px 0px 0px"
         src="document_archive.jpeg"
-      /> */}
+      />
       
 
 

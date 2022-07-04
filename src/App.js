@@ -100,7 +100,7 @@ function App({signOut, user}) {
     <AmplifyProvider theme={studioTheme}>
       <Authenticator variation="modal" components={components}>
         <AuthContextProvider>
-          <NavBar />
+          {/* <NavBar /> */}
 
           { alert 
           ?
