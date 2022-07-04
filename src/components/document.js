@@ -7,19 +7,20 @@ import * as queries from '../graphql/queries';
 import fileDownload from 'js-file-download'
 
 const Document = () => {
-  const [documents, setDocuments] = useState([]);
+  const [documents, setDocuments] = useState();
 
   useEffect(() => {
     async function queryDocuments() {
-      const {
-          data: { listDocuments }
-      } = await API.graphql({
-          query: queries.listDocuments,
-          authMode: 'API_KEY',
-      });
-      setDocuments(listDocuments.items);
+      if (documents === undefined) {
+        const {
+            data: { listDocuments }
+        } = await API.graphql({
+            query: queries.listDocuments,
+            authMode: 'API_KEY',
+        });
+        setDocuments(listDocuments.items);
+      }
     };
-
     queryDocuments();
   }, []);
 
@@ -72,7 +73,7 @@ const Document = () => {
         height="300px"
         position="relative"
         padding="0px 0px 0px 0px"
-        src="document_archive.jpeg"
+        src="document_archive1.jpeg"
       />
       <DocumentItemCollection 
         alignItems="center"
