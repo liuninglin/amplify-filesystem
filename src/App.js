@@ -56,7 +56,7 @@ Amplify.configure({
   }
 });
 
-function App({signOut, user}) {
+const App = () => {
   const [searchTxt, setSearchTxt] = useState('');
 
   const [alert, setAlert] = useState(true);
@@ -165,4 +165,5 @@ function App({signOut, user}) {
   );
 }
 
-export default withAuthenticator(App);
+export default App;
+
