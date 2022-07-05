@@ -18,7 +18,7 @@ const Document = () => {
             query: queries.listDocuments,
             authMode: 'API_KEY',
         });
-        setDocuments(listDocuments.items);
+        setDocuments(listDocuments.items.sort((a, b) => (a.createdAt <= b.createdAt) ? 1 : ((b.createdAt <= a.createdAt) ? -1 : 0)));
       }
     };
 
