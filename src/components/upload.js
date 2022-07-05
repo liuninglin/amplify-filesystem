@@ -30,7 +30,7 @@ const Upload = ({ setAlert, setAlertContent }) => {
             });
             setTags(listTags.items);
         }
-    
+
         async function queryCategories() {
             const {
                 data: { listCategories }
@@ -43,14 +43,14 @@ const Upload = ({ setAlert, setAlertContent }) => {
 
         queryTags();
         queryCategories();
-    }, [tags, categories]);
+    }, []);
 
-    
+
     const uploadFile = async () => {
         if (descriptionValue.trim().length === 0 ||
-                nameValue.trim().length === 0 ||
-                categoryIdValue.trim() === "" ||
-                !fileDataValue) {
+            nameValue.trim().length === 0 ||
+            categoryIdValue.trim() === "" ||
+            !fileDataValue) {
             const overrides_alert = {
                 Alert: {
                     children: "Please type all required items!"
@@ -70,7 +70,7 @@ const Upload = ({ setAlert, setAlertContent }) => {
             new Document({
                 name: nameValue,
                 filename: fileDataValue.name,
-                filetype: fileDataValue.type, 
+                filetype: fileDataValue.type,
                 description: descriptionValue,
                 categoryID: categoryIdValue,
             })
@@ -120,7 +120,7 @@ const Upload = ({ setAlert, setAlertContent }) => {
             onChange: onDescriptionChange,
         },
         div_category: {
-            children: 
+            children:
                 <SelectField
                     display="flex"
                     direction="column"
@@ -138,7 +138,7 @@ const Upload = ({ setAlert, setAlertContent }) => {
                     variation="default"
                     onChange={onCategoryChange}
                 >
-                    {category_options} 
+                    {category_options}
                 </SelectField>
         },
         div_tags: {

@@ -25,35 +25,32 @@ import { addUser, updateLoginTimeForUser } from './api/user'
 Hub.listen('auth', (data) => {
   switch (data.payload.event) {
     case 'signIn':
-        console.log('user signed in');
-        // console.log(data);
-        updateLoginTimeForUser(data.payload.data.attributes.sub);
-        break;
+      console.log('user signed in');
+      // console.log(data);
+      updateLoginTimeForUser(data.payload.data.attributes.sub);
+      break;
     case 'signUp':
-        console.log('user signed up');
-        // console.log(data);
-        addUser(data.payload.data.userSub, data.payload.data.user.username);
-        break;
+      console.log('user signed up');
+      // console.log(data);
+      addUser(data.payload.data.userSub, data.payload.data.user.username);
+      break;
     case 'signOut':
-        console.log('user signed out');
-        useNavigateAction({
-          type: "url",
-          url: "/",
-        });
-        break;
+      console.log('user signed out');
+      useNavigateAction({
+        type: "url",
+        url: "/",
+      });
+      break;
     case 'signIn_failure':
-        console.log('user sign in failed');
-        break;
+      console.log('user sign in failed');
+      break;
     case 'configured':
-        console.log('the Auth module is configured');
+      console.log('the Auth module is configured');
   }
 });
 
 Amplify.configure({
   ...awsconfig,
-  DataStore: {
-    authModeStrategyType: AuthModeStrategyType.MULTI_AUTH
-  }
 });
 
 const App = () => {
@@ -83,66 +80,66 @@ const App = () => {
     }
   };
 
-  
-  
-  
 
- 
 
-  
-  
-  
-  
 
-  
 
-  
-  
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <AmplifyProvider theme={studioTheme}>
       <Authenticator variation="modal" components={components}>
-        <AuthContextProvider>
-          <NavBar />
+        {/* <AuthContextProvider> */}
+        <NavBar />
 
-          { alert 
+        {alert
           ?
-            <Flex
-                  id="div_alert"
-                  direction="column"
-                  position="absolute"
-                  alignItems="stretch"
-                  style={{zIndex: '9999'}}
-              >
-              {alertContent}  
-              </Flex>
-          : ''
-          }
-
-
           <Flex
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-            alignContent="center"
-            wrap="nowrap"
-            padding="24px 24px 24px 24px"
+            id="div_alert"
+            direction="column"
+            position="absolute"
+            alignItems="stretch"
+            style={{ zIndex: '9999' }}
           >
-            
-            <Router>
-              <Routes>
-                  {/* <Route element={<Home setAlert={setAlert} setAlertContent={setAlertContent} />} path="/" /> */}
-                  <Route element={<Home/>} path="/" />
-                  <Route element={<Home />} path="/home" />
-                  <Route element={<Document/>} path="/document" />
-                  <Route element={<Upload setAlert={setAlert} setAlertContent={setAlertContent} />} path="/upload" />
-              </Routes>
-            </Router>
+            {alertContent}
           </Flex>
+          : ''
+        }
 
-          <Footer />
-        </AuthContextProvider>
-        
+
+        <Flex
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          alignContent="center"
+          wrap="nowrap"
+          padding="24px 24px 24px 24px"
+        >
+
+          <Router>
+            <Routes>
+              {/* <Route element={<Home setAlert={setAlert} setAlertContent={setAlertContent} />} path="/" /> */}
+              <Route element={<Home />} path="/" />
+              <Route element={<Home />} path="/home" />
+              <Route element={<Document />} path="/document" />
+              <Route element={<Upload setAlert={setAlert} setAlertContent={setAlertContent} />} path="/upload" />
+            </Routes>
+          </Router>
+        </Flex>
+
+        <Footer />
+        {/* </AuthContextProvider> */}
+
         {/* <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
