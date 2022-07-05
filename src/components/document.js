@@ -71,10 +71,11 @@ const Document = () => {
     <div>
       <Image
         width={"100vw"}
-        height="300px"
+        height="350px"
         position="relative"
-        padding="0px 0px 0px 0px"
-        src="document_archive.jpeg"
+        padding="0px 0px px 0px"
+        marginBottom={"50px"}
+        src="https://parisinstitute.org/wp-content/uploads/2019/02/Archive.jpg"
       />
       
 

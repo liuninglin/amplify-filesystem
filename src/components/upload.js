@@ -5,7 +5,7 @@ import { Upload as UIUpload, AlertSuccess, AlertWarning, TagItemCollection } fro
 import * as queries from '../graphql/queries';
 import { Document, TagDocument } from "../models";
 import { DataStore } from '@aws-amplify/datastore';
-import { SelectField } from '@aws-amplify/ui-react';
+import { SelectField, Image } from '@aws-amplify/ui-react';
 
 const Upload = ({ setAlert, setAlertContent }) => {
     const [fileDataValue, setFileDataValue] = useState();
@@ -149,7 +149,22 @@ const Upload = ({ setAlert, setAlertContent }) => {
         },
     }
 
-    return (<UIUpload width={"50vw"} overrides={overrides} />);
+    return (
+        <div>
+            <Image
+                width={"100vw"}
+                height="350px"
+                position="relative"
+                padding="0px 0px px 0px"
+                marginBottom={"50px"}
+                src="https://content-management-files.canva.com/cdn-cgi/image/f=auto,q=70/c698bb00-5c1b-41bf-80d0-0e26bfe90d67/youtubeeditor1800px.jpg"
+            />
+            <UIUpload 
+                width={"50vw"} 
+                overrides={overrides}
+                style={{margin: "0 auto"}} />
+        </div>
+    );
 };
 
 export default Upload;
