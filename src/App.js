@@ -129,8 +129,8 @@ const App = () => {
           <Router>
             <Routes>
               {/* <Route element={<Home setAlert={setAlert} setAlertContent={setAlertContent} />} path="/" /> */}
-              <Route element={<Home />} path="/" />
-              <Route element={<Home />} path="/home" />
+              <Route element={<Document />} path="/" />
+              <Route element={<Document />} path="/home" />
               <Route element={<Document />} path="/document" />
               <Route element={<Upload setAlert={setAlert} setAlertContent={setAlertContent} />} path="/upload" />
             </Routes>
