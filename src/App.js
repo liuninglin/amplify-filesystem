@@ -4,11 +4,11 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { Amplify, AuthModeStrategyType } from "aws-amplify";
+import { Amplify, AuthModeStrategyType, Auth } from "aws-amplify";
 import {
   useNavigateAction,
 } from "@aws-amplify/ui-react/internal";
-import { AmplifyProvider, Authenticator, Image, useTheme, View, withAuthenticator, Flex } from "@aws-amplify/ui-react";
+import { AmplifyProvider, Authenticator, Image, useTheme, View, withAuthenticator, Flex, Button } from "@aws-amplify/ui-react";
 import { studioTheme, AlertSuccess, AlertWarning, AlertError } from './ui-components';
 import { NavBar, SideBar, ViewProfile, Document, Upload, Footer, Home } from './components';
 import awsconfig from "./aws-exports";
@@ -16,7 +16,6 @@ import logo from './logo.svg';
 import { Hub } from 'aws-amplify';
 import AuthContextProvider from "./contexts/AuthContext";
 
-// import { RouteNavigation } from './routers';
 import "@aws-amplify/ui-react/styles.css";
 import './App.css';
 
@@ -26,16 +25,17 @@ Hub.listen('auth', (data) => {
   switch (data.payload.event) {
     case 'signIn':
       console.log('user signed in');
-      // console.log(data);
+      console.log(data);
       updateLoginTimeForUser(data.payload.data.attributes.sub);
       break;
     case 'signUp':
       console.log('user signed up');
-      // console.log(data);
+      console.log(data);
       addUser(data.payload.data.userSub, data.payload.data.user.username);
       break;
     case 'signOut':
       console.log('user signed out');
+      console.log(data);
       useNavigateAction({
         type: "url",
         url: "/",
@@ -43,15 +43,30 @@ Hub.listen('auth', (data) => {
       break;
     case 'signIn_failure':
       console.log('user sign in failed');
+      console.log(data);
       break;
     case 'configured':
       console.log('the Auth module is configured');
+      console.log(data);
   }
 });
 
 Amplify.configure({
   ...awsconfig,
+  Auth: {
+    region: "us-east-1",
+    userPoolId: "us-east-1_Jo1a9cF0M",
+    userPoolWebClientId: "4sr58o0snrb58jbabu9ovbbfd4",
+    oauth: {
+      domain: "mio-internal-dev.auth.us-east-1.amazoncognito.com",
+      scope: ["email", "openid", "aws.cognito.signin.user.admin", "profile", "phone"],
+      redirectSignIn: "https://master.d3s3aixswovl68.amplifyapp.com/oauth2/idpresponse",
+      redirectSignOut: "http://localhost:3000/",
+      responseType: "code"
+    }
+  }
 });
+
 
 const App = () => {
   const [searchTxt, setSearchTxt] = useState('');
@@ -82,82 +97,13 @@ const App = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   return (
-    <AmplifyProvider theme={studioTheme}>
-      <Authenticator variation="modal" components={components}>
-        {/* <AuthContextProvider> */}
-        <NavBar />
+    <>
+    {/* <NavBar /> */}
+    <Button title="Federated Sign In" onClick={() => Auth.federatedSignIn()} >asdfasd</Button>
+    
+    </>
 
-        {alert
-          ?
-          <Flex
-            id="div_alert"
-            direction="column"
-            position="absolute"
-            alignItems="stretch"
-            style={{ zIndex: '9999' }}
-          >
-            {alertContent}
-          </Flex>
-          : ''
-        }
-
-
-        <Flex
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          alignContent="center"
-          wrap="nowrap"
-          padding="24px 24px 24px 24px"
-        >
-
-          <Router>
-            <Routes>
-              {/* <Route element={<Home setAlert={setAlert} setAlertContent={setAlertContent} />} path="/" /> */}
-              <Route element={<Document />} path="/" />
-              <Route element={<Document />} path="/home" />
-              <Route element={<Document />} path="/document" />
-              <Route element={<Upload setAlert={setAlert} setAlertContent={setAlertContent} />} path="/upload" />
-            </Routes>
-          </Router>
-        </Flex>
-
-        <Footer />
-        {/* </AuthContextProvider> */}
-
-        {/* <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            My App
-          </p>
-          <h1>Hello {user.username}</h1>
-          <button onClick={signOut}>Sign out</button>
-          
-          
-
-          
-        </header>
-      </div> */}
-
-
-      </Authenticator>
-    </AmplifyProvider>
 
   );
 }
