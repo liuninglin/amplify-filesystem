@@ -26,7 +26,9 @@ Hub.listen('auth', (data) => {
     case 'signIn':
       console.log('user signed in');
       console.log(data);
-      updateLoginTimeForUser(data.payload.data.attributes.sub);
+      // console.log(Auth.user.attributes.email);
+      console.log(Auth.user);
+      // updateLoginTimeForUser(data.payload.data.attributes.sub);
       break;
     case 'signUp':
       console.log('user signed up');
@@ -60,7 +62,7 @@ Amplify.configure({
     oauth: {
       domain: "mio-internal-dev.auth.us-east-1.amazoncognito.com",
       scope: ["email", "openid", "aws.cognito.signin.user.admin", "profile", "phone"],
-      redirectSignIn: "https://master.d3s3aixswovl68.amplifyapp.com/oauth2/idpresponse",
+      redirectSignIn: "http://localhost:3000/oauth2/idpresponse",
       redirectSignOut: "http://localhost:3000/",
       responseType: "code"
     }
@@ -99,7 +101,7 @@ const App = () => {
 
   return (
     <>
-    {/* <NavBar /> */}
+    <NavBar />
     <Button title="Federated Sign In" onClick={() => Auth.federatedSignIn()} >asdfasd</Button>
     
     </>
