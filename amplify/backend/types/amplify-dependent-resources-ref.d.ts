@@ -1,15 +1,4 @@
 export type AmplifyDependentResourcesAttributes = {
-    "auth": {
-        "amplifyjohnny": {
-            "IdentityPoolId": "string",
-            "IdentityPoolName": "string",
-            "UserPoolId": "string",
-            "UserPoolArn": "string",
-            "UserPoolName": "string",
-            "AppClientIDWeb": "string",
-            "AppClientID": "string"
-        }
-    },
     "api": {
         "amplifyjohnny": {
             "GraphQLAPIKeyOutput": "string",
@@ -21,6 +10,14 @@ export type AmplifyDependentResourcesAttributes = {
         "amplifyJohnny": {
             "BucketName": "string",
             "Region": "string"
+        }
+    },
+    "function": {
+        "amplifyjohnny0676e240": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
         }
     }
 }

@@ -1,0 +1,6 @@
+[
+  {
+    "Action": ["s3:*"],
+    "Resource": ["arn:aws:s3:::amplifyjohnny1a26ad73f9694ef799c6c9a8d21ad9cd151847-staging", "arn:aws:s3:::amplifyjohnny1a26ad73f9694ef799c6c9a8d21ad9cd151847-staging/*"]
+  }
+]
