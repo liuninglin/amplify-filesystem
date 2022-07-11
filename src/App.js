@@ -37,7 +37,7 @@ const oauth = {
   domain: "mio-internal-dev.auth.us-east-1.amazoncognito.com",
   scope: ["email", "openid", "aws.cognito.signin.user.admin", "profile", "phone"],
   redirectSignIn: "https://master.d3s3aixswovl68.amplifyapp.com/",
-  redirectSignOut: "https://master.d3s3aixswovl68.amplifyapp.com/",
+  redirectSignOut: "http://localhost:3000/",
   responseType: "code"
 };
 Auth.configure({oauth});
