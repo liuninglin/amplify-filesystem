@@ -20,9 +20,7 @@ import { User } from "./models";
 import "@aws-amplify/ui-react/styles.css";
 import './App.css';
 
-import { addUser, updateLoginTimeForUser } from './api/user'
-
-
+// import { addUser, updateLoginTimeForUser } from './api/user'
 
 Amplify.configure({
   ...awsconfig,
