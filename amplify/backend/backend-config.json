@@ -1,6 +1,6 @@
 {
   "auth": {
-    "amplifyjohnny367d556f": {
+    "amplifyjohnny": {
       "service": "Cognito",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",

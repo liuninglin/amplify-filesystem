@@ -28,14 +28,18 @@ Amplify.configure({
     region: "us-east-1",
     userPoolId: "us-east-1_Jo1a9cF0M",
     userPoolWebClientId: "4sr58o0snrb58jbabu9ovbbfd4",
+    identityPoolId: "us-east-1:a2fe2de2-3d6f-46fc-b862-2dfb3d8fb7e8",
+    identityPoolRegion: "us-east-1"
   }
 });
 
 const oauth = {
   domain: "mio-internal-dev.auth.us-east-1.amazoncognito.com",
   scope: ["email", "openid", "aws.cognito.signin.user.admin", "profile", "phone"],
-  redirectSignIn: "https://master.d3s3aixswovl68.amplifyapp.com/",
-  redirectSignOut: "https://master.d3s3aixswovl68.amplifyapp.com/",
+  // redirectSignIn: "https://master.d3s3aixswovl68.amplifyapp.com/",
+  // redirectSignOut: "https://master.d3s3aixswovl68.amplifyapp.com/",
+  redirectSignIn: "http://localhost:3000/",
+  redirectSignOut: "http://localhost:3000/",
   responseType: "code"
 };
 Auth.configure({oauth});

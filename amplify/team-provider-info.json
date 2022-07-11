@@ -19,7 +19,7 @@
         }
       },
       "auth": {
-        "amplifyjohnny367d556f": {
+        "amplifyjohnny": {
           "userPoolId": "us-east-1_Jo1a9cF0M",
           "userPoolName": "mio-internal-userpool-dev",
           "webClientId": "4sr58o0snrb58jbabu9ovbbfd4",
