@@ -11,6 +11,10 @@ const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     Auth.currentAuthenticatedUser({ bypassCache: true }).then(setAuthUser);
+
+    if (authUser == null) {
+      Auth.federatedSignIn();
+    }
   }, []);
 
   useEffect(() => {

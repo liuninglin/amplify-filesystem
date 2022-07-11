@@ -56,6 +56,7 @@ const Upload = ({ setAlert, setAlertContent }) => {
                     children: "Please type all required items!"
                 }
             };
+            
             setAlert(true);
             setAlertContent(<AlertWarning width={"100vw"} overrides={overrides_alert} />);
 

@@ -12,18 +12,18 @@
       "AmplifyAppId": "d3s3aixswovl68"
     },
     "categories": {
+      "function": {
+        "amplifyjohnny0676e240": {
+          "deploymentBucketName": "amplify-amplifyf088120345cd4-staging-151847-deployment",
+          "s3Key": "amplify-builds/amplifyjohnny0676e240-4e3432616b5875326362-build.zip"
+        }
+      },
       "auth": {
-        "amplifyjohnny71620639": {
+        "amplifyjohnny367d556f": {
           "userPoolId": "us-east-1_Jo1a9cF0M",
           "userPoolName": "mio-internal-userpool-dev",
           "webClientId": "4sr58o0snrb58jbabu9ovbbfd4",
           "nativeClientId": "4sr58o0snrb58jbabu9ovbbfd4"
-        }
-      },
-      "function": {
-        "amplifyjohnny0676e240": {
-          "deploymentBucketName": "amplify-amplifyf088120345cd4-staging-151847-deployment",
-          "s3Key": "amplify-builds/amplifyjohnny0676e240-6e564734796d43483331-build.zip"
         }
       }
     }
