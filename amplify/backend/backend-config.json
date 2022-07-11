@@ -19,7 +19,7 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 30,
-              "apiKeyExpirationDate": "2022-08-02T07:00:44.595Z",
+              "apiKeyExpirationDate": "2022-08-10T15:56:24.646Z",
               "description": "api key description"
             }
           },
@@ -30,6 +30,20 @@
           ]
         }
       }
+    },
+    "documentversionsapi": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "amplifyjohnny0676e240",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "storage": {

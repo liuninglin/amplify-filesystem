@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/versions": {
+      "name": "/versions",
+      "lambdaFunction": "amplifyjohnny0676e240",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
