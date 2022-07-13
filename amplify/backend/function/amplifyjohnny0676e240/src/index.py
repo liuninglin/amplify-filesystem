@@ -37,17 +37,12 @@ def handler(event, context):
     print('received event:')
     print(event)
 
-    session = boto3.session.Session(
-        profile_name='amplify-johnny'
-    )
-
-    s3 = session.client('s3')
     bucket_name = 'amplifyjohnny1a26ad73f9694ef799c6c9a8d21ad9cd151847-staging'
-    key = 'public/111.pdf'
+    key = 'public/' + event['queryStringParameters']['filename']
 
-
+    session = boto3.session.Session()
+    s3 = session.client('s3')
     res = generate_signed_url(s3, bucket_name, key, 10)
-    print(json.dumps(res, indent=4, sort_keys=True, default=str))
 
     # res = "download successfully!"
     # download_file(s3, bucket_name, key, '/tmp')

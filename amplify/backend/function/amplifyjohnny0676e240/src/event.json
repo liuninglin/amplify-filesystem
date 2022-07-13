@@ -1,1 +1,5 @@
-{ "test": "event" }
+{
+    "queryStringParameters": {
+        "filename": "111.pdf"
+    }
+}
