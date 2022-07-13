@@ -5,7 +5,10 @@
       "name": "/versions",
       "lambdaFunction": "amplifyjohnny0676e240",
       "permissions": {
-        "setting": "open"
+        "setting": "private",
+        "auth": [
+          "read"
+        ]
       }
     }
   }

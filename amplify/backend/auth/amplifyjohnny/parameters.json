@@ -1,5 +1,5 @@
 {
-  "authSelections": "userPoolOnly",
+  "authSelections": "identityPoolAndUserPool",
   "resourceName": "amplifyjohnny",
   "serviceType": "imported",
   "region": "us-east-1",

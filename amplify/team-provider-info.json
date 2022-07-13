@@ -9,21 +9,33 @@
       "UnauthRoleName": "amplify-amplifyf088120345cd4-staging-151847-unauthRole",
       "StackName": "amplify-amplifyf088120345cd4-staging-151847",
       "StackId": "arn:aws:cloudformation:us-east-1:868603450798:stack/amplify-amplifyf088120345cd4-staging-151847/f21f7de0-f3d0-11ec-9d9b-0a11d42fba1d",
-      "AmplifyAppId": "d3s3aixswovl68"
+      "AmplifyAppId": "d3s3aixswovl68",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-amplifyf088120345cd4-staging-151847-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
-      "function": {
-        "amplifyjohnny0676e240": {
-          "deploymentBucketName": "amplify-amplifyf088120345cd4-staging-151847-deployment",
-          "s3Key": "amplify-builds/amplifyjohnny0676e240-4e3432616b5875326362-build.zip"
-        }
-      },
       "auth": {
         "amplifyjohnny": {
           "userPoolId": "us-east-1_Jo1a9cF0M",
           "userPoolName": "mio-internal-userpool-dev",
           "webClientId": "4sr58o0snrb58jbabu9ovbbfd4",
-          "nativeClientId": "4sr58o0snrb58jbabu9ovbbfd4"
+          "nativeClientId": "4sr58o0snrb58jbabu9ovbbfd4",
+          "identityPoolId": "us-east-1:a2fe2de2-3d6f-46fc-b862-2dfb3d8fb7e8",
+          "identityPoolName": "amplify-JL-IP",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::868603450798:role/amplify-amplifyf088120345cd4-staging-151847-authRole",
+          "authRoleName": "amplify-amplifyf088120345cd4-staging-151847-authRole",
+          "unauthRoleArn": "arn:aws:iam::868603450798:role/amplify-amplifyf088120345cd4-staging-151847-unauthRole",
+          "unauthRoleName": "amplify-amplifyf088120345cd4-staging-151847-unauthRole"
+        }
+      },
+      "function": {
+        "amplifydocumentversions": {
+          "deploymentBucketName": "amplify-amplifyf088120345cd4-staging-151847-deployment",
+          "s3Key": "amplify-builds/amplifydocumentversions-734c346237623277686c-build.zip"
+        },
+        "amplifyjohnny0676e240": {
+          "deploymentBucketName": "amplify-amplifyf088120345cd4-staging-151847-deployment",
+          "s3Key": "amplify-builds/amplifyjohnny0676e240-7378656e687172533971-build.zip"
         }
       }
     }
