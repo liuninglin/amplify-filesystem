@@ -6,11 +6,8 @@
 
 import React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { Document } from "../models";
 import { FlexProps } from "@aws-amplify/ui-react";
-export declare type DocumentItemProps = React.PropsWithChildren<Partial<FlexProps> & {
-    document?: Document;
-} & {
+export declare type VersionItemProps = React.PropsWithChildren<Partial<FlexProps> & {
     overrides?: EscapeHatchProps | undefined | null;
 }>;
-export default function DocumentItem(props: DocumentItemProps): React.ReactElement;
+export default function VersionItem(props: VersionItemProps): React.ReactElement;

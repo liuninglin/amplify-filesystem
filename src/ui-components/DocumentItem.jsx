@@ -6,11 +6,19 @@
 
 /* eslint-disable */
 import React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import {
+  getOverrideProps,
+  useNavigateAction,
+} from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Text } from "@aws-amplify/ui-react";
 import MyIcon from "./MyIcon";
 export default function DocumentItem(props) {
   const { document, overrides, ...rest } = props;
+  const btnUnderScoreversionsOnClick = useNavigateAction({
+    target: "_blank",
+    type: "url",
+    url: `${"/versions/"}${document?.filename}`,
+  });
   return (
     <Flex
       gap="16px"
@@ -368,7 +376,7 @@ export default function DocumentItem(props) {
               isDisabled={false}
               variation="primary"
               filename={document?.filename}
-              children="view"
+              children="View"
               {...getOverrideProps(overrides, "btn_view")}
             ></Button>
             <Button
@@ -387,6 +395,25 @@ export default function DocumentItem(props) {
               filename={document?.filename}
               children="Download"
               {...getOverrideProps(overrides, "btn_download")}
+            ></Button>
+            <Button
+              display="flex"
+              gap="0"
+              direction="row"
+              width="150px"
+              justifyContent="center"
+              alignItems="center"
+              shrink="0"
+              height="40px"
+              position="relative"
+              size="default"
+              isDisabled={false}
+              variation="primary"
+              children="Versions"
+              onClick={() => {
+                btnUnderScoreversionsOnClick();
+              }}
+              {...getOverrideProps(overrides, "btn_versions")}
             ></Button>
           </Flex>
         </Flex>

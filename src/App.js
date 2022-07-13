@@ -10,7 +10,7 @@ import {
 } from "@aws-amplify/ui-react/internal";
 import { AmplifyProvider, Authenticator, Image, useTheme, View, withAuthenticator, Flex, Button } from "@aws-amplify/ui-react";
 import { studioTheme, AlertSuccess, AlertWarning, AlertError } from './ui-components';
-import { NavBar, SideBar, ViewProfile, Document, Upload, Footer, Home } from './components';
+import { NavBar, SideBar, ViewProfile, Document, Upload, Footer, Home, Versions } from './components';
 import awsconfig from "./aws-exports";
 import logo from './logo.svg';
 import { Hub } from 'aws-amplify';
@@ -25,21 +25,27 @@ import './App.css';
 Amplify.configure({
   ...awsconfig,
   Auth: {
+    // region: "us-east-1",
+    // userPoolId: "us-east-1_Jo1a9cF0M",
+    // userPoolWebClientId: "4sr58o0snrb58jbabu9ovbbfd4",
+    // identityPoolId: "us-east-1:a2fe2de2-3d6f-46fc-b862-2dfb3d8fb7e8",
+    // identityPoolRegion: "us-east-1"
+
     region: "us-east-1",
     userPoolId: "us-east-1_Jo1a9cF0M",
-    userPoolWebClientId: "4sr58o0snrb58jbabu9ovbbfd4",
-    identityPoolId: "us-east-1:a2fe2de2-3d6f-46fc-b862-2dfb3d8fb7e8",
-    identityPoolRegion: "us-east-1"
+    userPoolWebClientId: "6t3tk9ntg5lrubpjs19tlnvusg",
+    identityPoolId: "us-east-1:4b51ae18-cdb9-44e3-938c-394249ec0ff4",
+    identityPoolRegion: "us-east-1" 
   }
 });
 
 const oauth = {
   domain: "mio-internal-dev.auth.us-east-1.amazoncognito.com",
   scope: ["email", "openid", "aws.cognito.signin.user.admin", "profile", "phone"],
-  redirectSignIn: "https://master.d3s3aixswovl68.amplifyapp.com/",
-  redirectSignOut: "https://master.d3s3aixswovl68.amplifyapp.com/",
-  // redirectSignIn: "http://localhost:3000/",
-  // redirectSignOut: "http://localhost:3000/",
+  // redirectSignIn: "https://master.d3s3aixswovl68.amplifyapp.com/",
+  // redirectSignOut: "https://master.d3s3aixswovl68.amplifyapp.com/",
+  redirectSignIn: "http://localhost:3000/",
+  redirectSignOut: "http://localhost:3000/",
   responseType: "code"
 };
 Auth.configure({oauth});
@@ -160,6 +166,7 @@ const App = () => {
                 <Route element={<Document />} path="/" />
                 <Route element={<Document />} path="/home" />
                 <Route element={<Document />} path="/document" />
+                <Route element={<Versions />} path="/versions/:filename" />
                 <Route element={<Upload setAlert={setAlert} setAlertContent={setAlertContent} />} path="/upload" />
               </Routes>
             </Router>
