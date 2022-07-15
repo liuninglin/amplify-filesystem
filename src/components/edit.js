@@ -149,21 +149,21 @@ const Edit = ({ setAlert, setAlertContent }) => {
             const data = await API.get('documentversionsapi', '/versions', {
                 'queryStringParameters': {
                     'filename': originDocument.filename,
-                    'all_versions': false,
+                    'all_versions': 'false',
                 }
             });
-            console.log("presigned url: " + data[0].url);
-        }
+            // console.log("presigned url: " + data[0].url);
 
-        // record email delivery for sending email later
-        DataStore.save(
-            new EmailDelivery({
-                sender: "johnny_liu@miopartners.com",
-                receivers: "im.johnny.liu@gmail.com",
-                subject: "testing",
-                html_body: "<html><body><h1>Hello</h1></body></html>",
-            })
-        ); 
+            // record email delivery for sending email later
+            DataStore.save(
+                new EmailDelivery({
+                    sender: "johnny_liu@miopartners.com",
+                    receivers: "im.johnny.liu@gmail.com",
+                    subject: "testing",
+                    html_body: "<html><body><h1>Hello</h1><p>Files just uploaded, you can check it out. <a href=" + data[0].url + " target='_blank'>" + data[0].url + "</a></p></body></html>",
+                })
+            ); 
+        }
     }
 
     const onNameChange = (evt) => setNameValue(evt.target.value);

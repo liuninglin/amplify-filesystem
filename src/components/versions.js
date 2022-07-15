@@ -14,7 +14,7 @@ const Versions = () => {
             const data = await API.get('documentversionsapi', '/versions', {
                 'queryStringParameters': {
                     'filename': filename,
-                    'all_versions': true,
+                    'all_versions': 'true',
                 }
             });
             setVersions(data);
