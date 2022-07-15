@@ -31,6 +31,7 @@ query ListDocuments {
         updatedAt
         tags {
           items {
+            _deleted
             id
             tag {
               name
@@ -59,3 +60,33 @@ query ListCategories {
 }
 `;
 
+export const getDocument = `
+query GetDocument($id: ID!) {
+  getDocument(id: $id) {
+    _deleted
+    _lastChangedAt
+    _version
+    categoryID
+    filename
+    description
+    createdAt
+    filetype
+    id
+    name
+    updatedAt
+    tags {
+      items {
+        tag {
+          _deleted
+          _lastChangedAt
+          _version
+          createdAt
+          id
+          name
+          updatedAt
+        }
+      }
+    }
+  }
+}  
+`
