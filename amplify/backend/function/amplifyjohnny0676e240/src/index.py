@@ -50,7 +50,7 @@ def handler(event, context):
     print(event)
 
     # checking whether generating presigned url for all versions or just the latest version
-    if event['queryStringParameters']['all_versions'] == True:
+    if event['queryStringParameters']['all_versions'] == 'true':
         all_versions = True
     else:
         all_versions = False
@@ -60,7 +60,7 @@ def handler(event, context):
 
     session = boto3.session.Session()
     s3 = session.client('s3')
-    res = generate_signed_url(s3, bucket_name, key, 10, all_versions)
+    res = generate_signed_url(s3, bucket_name, key, 300, all_versions)
 
     return {
         'statusCode': 200,
