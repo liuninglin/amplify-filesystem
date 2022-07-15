@@ -8,19 +8,32 @@ import fileDownload from 'js-file-download'
 
 const Document = () => {
   const [documents, setDocuments] = useState();
+  const [categories, setCategories] = useState();
 
   useEffect(() => {
     async function queryDocuments() {
-      if (documents === undefined) {
-        const {
-            data: { listDocuments }
-        } = await API.graphql({
-            query: queries.listDocuments,
-            authMode: 'API_KEY',
-        });
-        setDocuments(listDocuments.items.sort((a, b) => (a.createdAt <= b.createdAt) ? 1 : ((b.createdAt <= a.createdAt) ? -1 : 0)));
-      }
-    };
+      const {
+        data: { listDocuments }
+      } = await API.graphql({
+        query: queries.listDocuments,
+        variables: {
+          _deleted: false
+        },
+        authMode: 'API_KEY',
+      });
+      setDocuments(listDocuments.items.sort((a, b) => (a.createdAt <= b.createdAt) ? 1 : ((b.createdAt <= a.createdAt) ? -1 : 0)));
+
+      const {
+        data: { listCategories }
+      } = await API.graphql({
+        query: queries.listCategories,
+        variables: {
+          _deleted: false
+        },
+        authMode: 'API_KEY',
+      });
+      setCategories(listCategories.items);
+    }
 
     queryDocuments();
   }, []);
@@ -28,7 +41,7 @@ const Document = () => {
   const getFile = async (evt) => {
     const downloadButton = evt.currentTarget;
     const filename = downloadButton.getAttribute("filename");
-    const result = await Storage.get(filename, {download: true});
+    const result = await Storage.get(filename, { download: true });
     const url = window.URL.createObjectURL(result.Body);
 
     return {
@@ -46,27 +59,42 @@ const Document = () => {
   });
   const overrideItems = (item, index) => ({
     overrides: {
+      btn_edit: {
+        onClick: () => {
+          window.open('/document/' + item?.item?.id);
+        }
+      },
       btn_download: {
         onClick: async (evt) => {
-          const fileInfo = await getFile(evt); 
-          fileDownload(fileInfo.fileBody, fileInfo.filename);
+          const fileInfo = await getFile(evt);
+
+          // download the file with the name of the file, the name remove the extension
+          fileDownload(fileInfo.fileBody, fileInfo.filename.replace(/\.[^/.]+$/, ""));
         }
       },
       btn_view: {
         onClick: async (evt) => {
-          const fileInfo = await getFile(evt); 
+          const fileInfo = await getFile(evt);
           window.open(fileInfo.url);
         }
       },
+      btn_versions: {
+        onClick: () => {
+          window.open('/versions/' + item?.item?.filename);
+        }
+      },
       txt_description: {
-        style: {overflowY: "auto"}
+        style: { overflowY: "auto" }
+      },
+      txt_categoryname: {
+        children: categories?.find(category => category.id === item?.item?.categoryID)?.name 
       },
       div_tags: {
-        children: <TagShowItemCollection items={item?.item?.tags?.items} overrideItems={overrideItemsTag}></TagShowItemCollection>
+        children: <TagShowItemCollection items={item?.item?.tags?.items.filter(i => i?._deleted !== true) } overrideItems={overrideItemsTag}></TagShowItemCollection>
       },
     }
   });
-   
+
   return (
     <div>
       <Image
@@ -77,23 +105,23 @@ const Document = () => {
         marginBottom={"50px"}
         src="https://parisinstitute.org/wp-content/uploads/2019/02/Archive.jpg"
       />
-      
 
 
-    <Collection
-      type="list"
-      direction="column"
-      alignItems="center"
-      items={documents || []}
-    >
-      {(item, index) => (
-        <DocumentItem
-          document={item}
-          key={item.id}
-          {...(overrideItems && overrideItems({ item, index }))}
-        ></DocumentItem>
-      )}
-    </Collection>
+
+      <Collection
+        type="list"
+        direction="column"
+        alignItems="center"
+        items={documents || []}
+      >
+        {(item, index) => (
+          <DocumentItem
+            document={item}
+            key={item.id}
+            {...(overrideItems && overrideItems({ item, index }))}
+          ></DocumentItem>
+        )}
+      </Collection>
     </div>
   );
 };
