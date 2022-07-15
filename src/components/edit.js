@@ -6,7 +6,7 @@ import * as queries from '../graphql/queries';
 import { useParams } from 'react-router-dom';
 import { DataStore } from '@aws-amplify/datastore';
 import { SelectField, Collection } from '@aws-amplify/ui-react';
-import { Document, TagDocument } from "../models";
+import { Document, TagDocument, EmailDelivery } from "../models";
 import moment from "moment";
 
 const Edit = ({ setAlert, setAlertContent }) => {
@@ -143,6 +143,27 @@ const Edit = ({ setAlert, setAlertContent }) => {
         }
         setAlert(true);
         setAlertContent(<AlertSuccess width={"100vw"} overrides={overrides_alert} />);
+
+        // generate presigned url for file uploaded
+        if (fileDataValue !== null) {
+            const data = await API.get('documentversionsapi', '/versions', {
+                'queryStringParameters': {
+                    'filename': originDocument.filename,
+                    'all_versions': false,
+                }
+            });
+            console.log("presigned url: " + data[0].url);
+        }
+
+        // record email delivery for sending email later
+        DataStore.save(
+            new EmailDelivery({
+                sender: "johnny_liu@miopartners.com",
+                receivers: "im.johnny.liu@gmail.com",
+                subject: "testing",
+                html_body: "<html><body><h1>Hello</h1></body></html>",
+            })
+        ); 
     }
 
     const onNameChange = (evt) => setNameValue(evt.target.value);

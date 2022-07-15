@@ -35,7 +35,11 @@
         },
         "amplifyjohnny0676e240": {
           "deploymentBucketName": "amplify-amplifyf088120345cd4-staging-151847-deployment",
-          "s3Key": "amplify-builds/amplifyjohnny0676e240-7378656e687172533971-build.zip"
+          "s3Key": "amplify-builds/amplifyjohnny0676e240-315832326f784b32732b-build.zip"
+        },
+        "amplifyjohnnyemail": {
+          "deploymentBucketName": "amplify-amplifyf088120345cd4-staging-151847-deployment",
+          "s3Key": "amplify-builds/amplifyjohnnyemail-72307a727a7361385643-build.zip"
         }
       }
     }

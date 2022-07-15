@@ -4,9 +4,10 @@ import { schema } from './schema';
 
 
 
-const { Category, Document, Tag, User, TagDocument } = initSchema(schema);
+const { EmailDelivery, Category, Document, Tag, User, TagDocument } = initSchema(schema);
 
 export {
+  EmailDelivery,
   Category,
   Document,
   Tag,

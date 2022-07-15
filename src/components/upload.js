@@ -3,7 +3,7 @@ import { API } from "aws-amplify";
 import { Storage } from "aws-amplify";
 import { Upload as UIUpload, AlertSuccess, AlertWarning, TagItemCollection } from "../ui-components";
 import * as queries from '../graphql/queries';
-import { Document, TagDocument } from "../models";
+import { Document, TagDocument, EmailDelivery } from "../models";
 import { DataStore } from '@aws-amplify/datastore';
 import { SelectField, Image } from '@aws-amplify/ui-react';
 import uuid from 'react-uuid'
@@ -95,6 +95,26 @@ const Upload = ({ setAlert, setAlertContent }) => {
         }
         setAlert(true);
         setAlertContent(<AlertSuccess width={"100vw"} overrides={overrides_alert} />);
+
+
+        // generate presigned url for file uploaded
+        const data = await API.get('documentversionsapi', '/versions', {
+            'queryStringParameters': {
+                'filename': filename,
+                'all_versions': false,
+            }
+        });
+        console.log("presigned url: " + data);
+
+        // record email delivery for sending email later
+        DataStore.save(
+            new EmailDelivery({
+                sender: "johnny_liu@miopartners.com",
+                receivers: ["im.johnny.liu@gmail.com"],
+                subject: "testing",
+                html_body: "<html><body><h1>Hello</h1></body></html>",
+            })
+        ); 
     }
 
     const handleTagCheckboxClick = (event, item) => {

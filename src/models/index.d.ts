@@ -4,6 +4,10 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+type EmailDeliveryMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 type CategoryMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
@@ -22,6 +26,19 @@ type UserMetaData = {
 
 type TagDocumentMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+export declare class EmailDelivery {
+  readonly id: string;
+  readonly receivers?: string | null;
+  readonly subject?: string | null;
+  readonly html_body?: string | null;
+  readonly text_body?: string | null;
+  readonly sender?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  constructor(init: ModelInit<EmailDelivery, EmailDeliveryMetaData>);
+  static copyOf(source: EmailDelivery, mutator: (draft: MutableModel<EmailDelivery, EmailDeliveryMetaData>) => MutableModel<EmailDelivery, EmailDeliveryMetaData> | void): EmailDelivery;
 }
 
 export declare class Category {

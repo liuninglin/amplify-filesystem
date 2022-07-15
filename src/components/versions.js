@@ -13,7 +13,8 @@ const Versions = () => {
         const listVersions = async () => {
             const data = await API.get('documentversionsapi', '/versions', {
                 'queryStringParameters': {
-                    'filename': filename
+                    'filename': filename,
+                    'all_versions': true,
                 }
             });
             setVersions(data);
@@ -41,21 +42,21 @@ const Versions = () => {
     });
 
     return (
-    <div>
-        <Collection
-            type="list"
-            direction="column"
-            alignItems="center"
-            items={versions || []}
-        >
-        {(item, index) => (
-            <VersionItem
-            key={item.VersionId}
-            {...(overrideItems && overrideItems({ item, index }))}
-            ></VersionItem>
-        )}
-        </Collection>
-    </div>
+        <div>
+            <Collection
+                type="list"
+                direction="column"
+                alignItems="center"
+                items={versions || []}
+            >
+                {(item, index) => (
+                    <VersionItem
+                        key={item.VersionId}
+                        {...(overrideItems && overrideItems({ item, index }))}
+                    ></VersionItem>
+                )}
+            </Collection>
+        </div>
     );
 }
 

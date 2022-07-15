@@ -19,7 +19,6 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 30,
-              "apiKeyExpirationDate": "2022-08-02T07:00:44.595Z",
               "description": "api key description"
             }
           },
@@ -55,6 +54,12 @@
   },
   "function": {
     "amplifyjohnny0676e240": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
+    },
+    "amplifyjohnnyemail": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
