@@ -9,5 +9,6 @@ export { default as Footer } from "./footer";
 
 
 export { default as Document } from "./document";
+export { default as Edit } from "./edit";
 export { default as Upload } from "./upload";
 export { default as Versions } from "./versions";

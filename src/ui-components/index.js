@@ -6,6 +6,7 @@
 
 export { default as HeroLayout1 } from "./HeroLayout1";
 export { default as ItemCardB } from "./ItemCardB";
+export { default as DocumentEdit } from "./DocumentEdit";
 export { default as MarketingPricing } from "./MarketingPricing";
 export { default as VersionItem } from "./VersionItem";
 export { default as StandardCard } from "./StandardCard";
