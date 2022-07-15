@@ -5,8 +5,8 @@
  **************************************************************************/
 
 import React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { Document } from "../models";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { FlexProps } from "@aws-amplify/ui-react";
 export declare type DocumentItemProps = React.PropsWithChildren<Partial<FlexProps> & {
     document?: Document;
