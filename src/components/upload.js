@@ -6,6 +6,7 @@ import * as queries from '../graphql/queries';
 import { Document, TagDocument } from "../models";
 import { DataStore } from '@aws-amplify/datastore';
 import { SelectField, Image } from '@aws-amplify/ui-react';
+import uuid from 'react-uuid'
 
 const Upload = ({ setAlert, setAlertContent }) => {
     const [fileDataValue, setFileDataValue] = useState();
@@ -63,14 +64,15 @@ const Upload = ({ setAlert, setAlertContent }) => {
             return;
         }
 
-        await Storage.put(fileDataValue.name, fileDataValue, {
+        const filename = fileDataValue.name + "." + uuid();
+        await Storage.put(filename, fileDataValue, {
             contentType: fileDataValue.type,
         });
 
         const document = await DataStore.save(
             new Document({
                 name: nameValue,
-                filename: fileDataValue.name,
+                filename: filename,
                 filetype: fileDataValue.type,
                 description: descriptionValue,
                 categoryID: categoryIdValue,
@@ -163,7 +165,7 @@ const Upload = ({ setAlert, setAlertContent }) => {
             <UIUpload 
                 width={"50vw"} 
                 overrides={overrides}
-                style={{margin: "0 auto"}} />
+                style={{ margin: "0 auto", textAlign: "left" }} />
         </div>
     );
 };
