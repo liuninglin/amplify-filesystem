@@ -13,10 +13,6 @@ import {
 import { Button, Flex, Icon, SearchField, Text } from "@aws-amplify/ui-react";
 export default function NavBar(props) {
   const { overrides, ...rest } = props;
-  const buttonThreeOneFiveFourTwoSixEightZeroOnClick = useNavigateAction({
-    type: "url",
-    url: "/home",
-  });
   const buttonThreeOneFiveFourTwoSixEightSevenOnClick = useNavigateAction({
     type: "url",
     url: "/document",
@@ -24,14 +20,6 @@ export default function NavBar(props) {
   const buttonThreeOneFiveFourTwoSixNineOneOnClick = useNavigateAction({
     type: "url",
     url: "/upload",
-  });
-  const buttonThreeOneFiveEightTwoSevenTwoOneOnClick = useNavigateAction({
-    type: "url",
-    url: "/user",
-  });
-  const buttonThreeOneFiveEightTwoSevenTwoFiveOnClick = useNavigateAction({
-    type: "url",
-    url: "",
   });
   return (
     <Flex
@@ -106,26 +94,7 @@ export default function NavBar(props) {
         size="small"
         isDisabled={false}
         variation="link"
-        children="Home"
-        onClick={() => {
-          buttonThreeOneFiveFourTwoSixEightZeroOnClick();
-        }}
-        {...getOverrideProps(overrides, "Button31542680")}
-      ></Button>
-      <Button
-        display="flex"
-        gap="0"
-        direction="row"
-        width="fit-content"
-        justifyContent="center"
-        alignItems="center"
-        shrink="0"
-        height="33px"
-        position="relative"
-        size="small"
-        isDisabled={false}
-        variation="link"
-        children="Document"
+        children="Explore"
         onClick={() => {
           buttonThreeOneFiveFourTwoSixEightSevenOnClick();
         }}
@@ -150,53 +119,15 @@ export default function NavBar(props) {
         }}
         {...getOverrideProps(overrides, "Button31542691")}
       ></Button>
-      <Button
-        display="flex"
-        gap="0"
-        direction="row"
-        width="fit-content"
-        justifyContent="center"
-        alignItems="center"
-        shrink="0"
-        height="33px"
-        position="relative"
-        size="small"
-        isDisabled={false}
-        variation="link"
-        children="User"
-        onClick={() => {
-          buttonThreeOneFiveEightTwoSevenTwoOneOnClick();
-        }}
-        {...getOverrideProps(overrides, "Button31582721")}
-      ></Button>
-      <Button
-        display="flex"
-        gap="0"
-        direction="row"
-        width="fit-content"
-        justifyContent="center"
-        alignItems="center"
-        shrink="0"
-        height="33px"
-        position="relative"
-        size="small"
-        isDisabled={false}
-        variation="link"
-        children="Profile"
-        onClick={() => {
-          buttonThreeOneFiveEightTwoSevenTwoFiveOnClick();
-        }}
-        {...getOverrideProps(overrides, "Button31582725")}
-      ></Button>
       <Flex
         gap="20px"
         direction="row"
-        width="828px"
+        width="1098px"
         height="45px"
         justifyContent="flex-end"
         alignItems="center"
         grow="1"
-        basis="828px"
+        basis="1098px"
         position="relative"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 321")}
@@ -204,11 +135,10 @@ export default function NavBar(props) {
         <Flex
           gap="20px"
           direction="row"
-          width="643px"
+          width="fit-content"
           height="45px"
           alignItems="center"
-          grow="1"
-          basis="643px"
+          shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Frame 322")}
@@ -217,7 +147,7 @@ export default function NavBar(props) {
             display="flex"
             gap="8px"
             direction="column"
-            width="300px"
+            width="610px"
             shrink="0"
             height="40px"
             position="relative"
@@ -233,9 +163,11 @@ export default function NavBar(props) {
         <Flex
           gap="0"
           direction="column"
+          width="361px"
           justifyContent="center"
           alignItems="stretch"
-          shrink="0"
+          grow="1"
+          basis="361px"
           height="42px"
           position="relative"
           padding="0px 10px 0px 10px"
@@ -247,7 +179,7 @@ export default function NavBar(props) {
             fontWeight="700"
             color="rgba(13,26,38,1)"
             lineHeight="21px"
-            textAlign="left"
+            textAlign="right"
             display="flex"
             direction="column"
             justifyContent="flex-start"
@@ -264,7 +196,7 @@ export default function NavBar(props) {
             fontWeight="700"
             color="rgba(13,26,38,1)"
             lineHeight="21px"
-            textAlign="left"
+            textAlign="right"
             display="flex"
             direction="column"
             justifyContent="flex-start"
